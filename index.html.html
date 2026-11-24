@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IFMA | Lista de Verificação — Contratações Diretas (Lei nº 14.133/2021)</title>
+
+  <!-- Tipografia Oficial IFMA: Open Sans (Manual de Identidade Visual, pág. 16) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bibliotecas para exportação em PDF e DOCX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Open Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            /* Padrão Cromático Oficial IFMA (Manual de Identidade Visual, pág. 18) */
+            ifma: {
+              green: '#2f9e41',
+              'green-dark': '#237a31',
+              'green-darker': '#165220',
+              'green-light': '#eef8f0',
+              red: '#cd191e',
+              'red-dark': '#a31216',
+              'red-light': '#fdf2f2',
+              blue: '#2d2d87',
+              'blue-dark': '#202066',
+              'blue-light': '#f0f0fa',
+              dark: '#1a1a1a',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Estilos específicos apenas para impressão limpa (PDF) -->
+  <style>
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11px !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-break-avoid {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .print-section {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 16px !important;
+      }
+      input, textarea {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#f4f7f5] text-neutral-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- =====================================================================
+       CABEÇALHO INSTITUCIONAL IFMA (FUNDO BRANCO + MARCA ESPECIAL COLORIDA)
+  ====================================================================== -->
+  <header class="bg-white text-neutral-900 shadow-sm sticky top-0 z-30 border-b-4 border-ifma-green no-print">
+    <!-- Faixa institucional superior -->
+    <div class="bg-ifma-green text-white text-[11px] font-semibold tracking-wide">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 flex flex-wrap items-center justify-between gap-2">
+        <span>INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO MARANHÃO</span>
+        <span class="opacity-90">Lei nº 14.133/2021 • Modelo AGU (<span id="header-versao-agu">Set/2024</span>) • Integração SUAP</span>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+      <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
+        <!-- Assinatura Visual Oficial IFMA + Título do Sistema -->
+        <div class="flex items-center gap-4">
+          <!-- Marca IFMA Especial Colorida (Fundo Branco obrigatório - Manual pág. 13 e 19) -->
+          <div class="flex items-center gap-2.5 shrink-0 pr-4 border-r border-neutral-200" aria-label="Marca Oficial IFMA">
+            <svg class="w-9 h-12 shrink-0" viewBox="0 0 66 88" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Símbolo IFMA">
+              <!-- Linha 1: Círculo Vermelho (#cd191e) + 2 Quadrados Verdes (#2f9e41) -->
+              <circle cx="10" cy="10" r="10" fill="#cd191e"/>
+              <rect x="23" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <rect x="46" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <!-- Linha 2: 2 Quadrados Verdes -->
+              <rect x="0" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <rect x="23" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <!-- Linha 3: 3 Quadrados Verdes -->
+              <rect x="0" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <rect x="23" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <rect x="46" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <!-- Linha 4: 2 Quadrados Verdes -->
+              <rect x="0" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+              <rect x="23" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+            </svg>
+            <div class="leading-tight hidden sm:block">
+              <div class="text-sm font-extrabold tracking-tight text-black leading-none">INSTITUTO</div>
+              <div class="text-sm font-extrabold tracking-tight text-black leading-tight">FEDERAL</div>
+              <div class="text-xs font-normal text-neutral-700 leading-tight">Maranhão</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-base sm:text-lg font-bold tracking-tight text-neutral-900">
+                Lista de Verificação — Contratações Diretas
+              </h1>
+              <span class="text-[11px] font-bold bg-ifma-green-light text-ifma-green-darker border border-ifma-green/30 px-2 py-0.5 rounded-full">
+                Dispensa &amp; Inexigibilidade
+              </span>
+            </div>
+            <p class="text-xs text-neutral-500 mt-0.5">
+              Sistema dinâmico de conformidade processual com exportação JSON, PDF e DOCX
+            </p>
+          </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Botão Importar JSON -->
+          <button
+            id="btn-importar"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300 transition cursor-pointer"
+            title="Importar dados salvos de um arquivo JSON"
+          >
+            <svg class="w-4 h-4 text-ifma-green" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            <span>Importar JSON</span>
+          </button>
+          <input id="input-importar-json" type="file" accept=".json,application/json" class="hidden" />
+
+          <!-- Botão Exportar JSON -->
+          <button
+            id="btn-exportar"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-green hover:bg-ifma-green-dark text-white shadow-xs transition cursor-pointer"
+            title="Baixar o preenchimento atual em formato JSON"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            <span>Exportar JSON</span>
+          </button>
+
+          <!-- Botão Preview do Documento -->
+          <button
+            id="btn-preview"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white shadow-xs transition cursor-pointer"
+            title="Visualizar prévia oficial do documento"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>Preview</span>
+          </button>
+
+          <!-- Botão Exportar PDF -->
+          <button
+            id="btn-exportar-pdf"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-red-light text-ifma-red border border-ifma-red/30 transition cursor-pointer"
+            title="Baixar documento em formato PDF"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            <span>PDF</span>
+          </button>
+
+          <!-- Botão Exportar DOCX -->
+          <button
+            id="btn-exportar-docx"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer"
+            title="Baixar documento editável em formato Word (.docx)"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            <span>DOCX</span>
+          </button>
+
+          <!-- Botão Limpar -->
+          <button
+            id="btn-limpar"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-red hover:bg-ifma-red-dark text-white transition cursor-pointer"
+            title="Limpar todo o formulário"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            <span class="hidden sm:inline">Limpar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cabeçalho Exclusivo para Impressão (Padrão Papel Timbrado IFMA) -->
+  <div class="hidden print:block max-w-7xl mx-auto px-4 pt-4 pb-3 border-b-2 border-ifma-green mb-4">
+    <div class="flex items-center justify-center gap-3 mb-2">
+      <svg class="w-7 h-9" viewBox="0 0 66 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="10" fill="#cd191e"/>
+        <rect x="23" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="46" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="0" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="23" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="0" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="23" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="46" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="0" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+        <rect x="23" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+      </svg>
+      <div class="text-left">
+        <p id="print-orgao" class="font-bold text-sm uppercase text-black">INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO MARANHÃO</p>
+        <h2 class="font-bold text-xs text-neutral-800">LISTA DE VERIFICAÇÃO — CONTRATAÇÕES DIRETAS (LEI Nº 14.133/2021)</h2>
+      </div>
+    </div>
+    <p id="print-subtitulo" class="text-center text-xs text-neutral-600 mt-0.5"></p>
+  </div>
+
+  <!-- =====================================================================
+       CONTEÚDO PRINCIPAL
+  ====================================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- 1. IDENTIFICAÇÃO DO PROCESSO -->
+    <section class="bg-white rounded-2xl shadow-xs border border-neutral-200 p-5 sm:p-6 print-section">
+      <div class="flex items-center gap-2.5 mb-4">
+        <span class="w-1.5 h-6 bg-ifma-green rounded-full"></span>
+        <h2 class="text-base font-bold text-neutral-900">Identificação do Processo Administrativo</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-2">
+          <label for="meta-orgao" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Órgão / Campus / Unidade
+          </label>
+          <input
+            id="meta-orgao"
+            type="text"
+            placeholder="Ex: IFMA — Campus São Luís Monte Castelo / Reitoria..."
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div>
+          <label for="meta-processo" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Nº do Processo / SUAP
+          </label>
+          <input
+            id="meta-processo"
+            type="text"
+            placeholder="Ex: 23249.000000.2026-00"
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="meta-link-processo" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Link do Processo (SUAP)
+            <span class="font-normal normal-case text-neutral-400 ml-1">— torna o nº do processo clicável no PDF/DOCX</span>
+          </label>
+          <input
+            id="meta-link-processo"
+            type="url"
+            placeholder="Ex: https://suap.ifma.edu.br/processo_eletronico/processo/..."
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div>
+          <label for="meta-versao-agu" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Versão do Modelo AGU (Data)
+          </label>
+          <input
+            id="meta-versao-agu"
+            type="text"
+            placeholder="Ex: Set/2024 ou 09/2024"
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div class="md:col-span-2 lg:col-span-3">
+          <label for="meta-objeto" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Objeto da Contratação
+          </label>
+          <input
+            id="meta-objeto"
+            type="text"
+            placeholder="Descreva resumidamente o objeto da contratação direta..."
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div class="md:col-span-1 lg:col-span-2">
+          <label for="meta-responsavel" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Responsável
+          </label>
+          <input
+            id="meta-responsavel"
+            type="text"
+            placeholder="Nome / SIAPE"
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+
+        <div>
+          <label for="meta-data" class="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1">
+            Data da Verificação
+          </label>
+          <input
+            id="meta-data"
+            type="date"
+            class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CONFIGURAÇÃO DINÂMICA DA LISTA (DISPENSA vs INEXIGIBILIDADE + OBJETO) -->
+    <section class="bg-white rounded-2xl shadow-xs border border-neutral-200 p-5 sm:p-6 no-print">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
+        <div class="flex items-center gap-2.5">
+          <span class="w-1.5 h-6 bg-ifma-red rounded-full"></span>
+          <h2 class="text-base font-bold text-neutral-900">Enquadramento da Contratação Direta</h2>
+        </div>
+        <span class="text-xs text-neutral-500">
+          O sistema adapta automaticamente as listas aplicáveis conforme sua seleção
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Escolha da Modalidade (Dispensa ou Inexigibilidade) -->
+        <div>
+          <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2.5">
+            1. Tipo de Contratação Direta <span class="text-rose-500">*</span>
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="selector-modalidade">
+            <!-- Card Dispensa -->
+            <button
+              type="button"
+              data-modalidade="dispensa"
+              class="modalidade-btn group text-left p-4 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-sm">Dispensa de Licitação</span>
+                <span class="indicator-dot w-4 h-4 rounded-full border-2 flex items-center justify-center"></span>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Art. 75 da Lei nº 14.133/2021. Ativa a <strong>Lista 1</strong> e a <strong>Lista 2B</strong> (exclusiva para Dispensa).
+              </p>
+            </button>
+
+            <!-- Card Inexigibilidade -->
+            <button
+              type="button"
+              data-modalidade="inexigibilidade"
+              class="modalidade-btn group text-left p-4 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-sm">Inexigibilidade</span>
+                <span class="indicator-dot w-4 h-4 rounded-full border-2 flex items-center justify-center"></span>
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Art. 74 da Lei nº 14.133/2021. Ativa a <strong>Lista 1</strong> e a <strong>Lista 2A</strong> (exclusiva para Inexigibilidade).
+              </p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Escolha da Natureza do Objeto (Lista 3A / 3B) -->
+        <div>
+          <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2.5">
+            2. Natureza do Objeto (Verificações Específicas 3A / 3B)
+          </p>
+          <div class="grid grid-cols-2 gap-2.5" id="selector-objeto">
+            <button
+              type="button"
+              data-objeto="aquisicao"
+              class="objeto-btn text-left p-3 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="font-semibold text-sm">Aquisição de Bens</div>
+              <div class="text-xs text-slate-500 mt-0.5">Ativa Lista 3A</div>
+            </button>
+
+            <button
+              type="button"
+              data-objeto="servicos"
+              class="objeto-btn text-left p-3 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="font-semibold text-sm">Serviços em Geral</div>
+              <div class="text-xs text-slate-500 mt-0.5">Ativa Lista 3B</div>
+            </button>
+
+            <button
+              type="button"
+              data-objeto="ambos"
+              class="objeto-btn text-left p-3 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="font-semibold text-sm">Bens e Serviços</div>
+              <div class="text-xs text-slate-500 mt-0.5">Ativa Listas 3A e 3B</div>
+            </button>
+
+            <button
+              type="button"
+              data-objeto="nenhum"
+              class="objeto-btn text-left p-3 rounded-xl border-2 transition cursor-pointer focus:outline-none"
+            >
+              <div class="font-semibold text-sm">Outro / Não se aplica</div>
+              <div class="text-xs text-slate-500 mt-0.5">Oculta Listas 3A e 3B</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo das Listas Ativas -->
+      <div class="mt-5 pt-4 border-t border-neutral-100 flex flex-wrap items-center gap-2">
+        <span class="text-xs font-bold text-neutral-500 uppercase mr-1">Listas ativas no momento:</span>
+        <div id="active-lists-badges" class="flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+
+    <!-- 3. PAINEL DE PROGRESSO E FILTROS (EXIBIDO APÓS ESCOLHER MODALIDADE) -->
+    <section id="dashboard-panel" class="hidden bg-white rounded-2xl shadow-xs border border-neutral-200 p-5 no-print">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <!-- Barra de Progresso -->
+        <div class="flex-1 max-w-xl">
+          <div class="flex items-center justify-between text-sm mb-1.5">
+            <span class="font-bold text-neutral-700">Progresso do Preenchimento</span>
+            <span id="stat-progresso-texto" class="font-bold text-ifma-green-darker">0% (0/0)</span>
+          </div>
+          <div class="w-full h-2.5 bg-neutral-100 rounded-full overflow-hidden">
+            <div id="stat-progresso-barra" class="h-full bg-ifma-green rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Contadores Semânticos -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div class="px-3 py-1.5 rounded-xl bg-ifma-green-light border border-ifma-green/30 text-ifma-green-darker text-xs font-semibold">
+            Sim: <span id="stat-sim" class="font-bold">0</span>
+          </div>
+          <div class="px-3 py-1.5 rounded-xl bg-ifma-red-light border border-ifma-red/30 text-ifma-red text-xs font-semibold">
+            Não: <span id="stat-nao" class="font-bold">0</span>
+          </div>
+          <div class="px-3 py-1.5 rounded-xl bg-neutral-100 border border-neutral-200 text-neutral-700 text-xs font-semibold">
+            Não se aplica: <span id="stat-na" class="font-bold">0</span>
+          </div>
+          <div class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold">
+            Pendentes: <span id="stat-pendentes" class="font-bold">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Busca e Filtro Rápido -->
+      <div class="mt-4 pt-4 border-t border-neutral-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1 max-w-md">
+          <svg class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
+          <input
+            id="input-busca"
+            type="text"
+            placeholder="Buscar item por palavra-chave ou nº SUAP..."
+            class="w-full pl-10 pr-4 py-2 rounded-xl border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-ifma-green transition"
+          />
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5" id="filtro-status-group">
+          <button type="button" data-filtro="todos" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">Todos</button>
+          <button type="button" data-filtro="pendente" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">Pendentes</button>
+          <button type="button" data-filtro="Sim" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">Sim</button>
+          <button type="button" data-filtro="Não" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">Não</button>
+          <button type="button" data-filtro="Não se aplica" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">Não se aplica</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONTAINER DAS LISTAS DE VERIFICAÇÃO -->
+    <div id="checklist-container" class="space-y-6">
+      <!-- Estado inicial antes da escolha -->
+      <div class="bg-white rounded-2xl border-2 border-dashed border-ifma-green/35 p-10 text-center">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-ifma-green-light text-ifma-green flex items-center justify-center mb-4">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-800">Selecione o Tipo de Contratação Direta</h3>
+        <p class="text-sm text-neutral-500 max-w-md mx-auto mt-1.5">
+          Escolha acima entre <strong>Dispensa de Licitação</strong> ou <strong>Inexigibilidade</strong> para carregar os itens exigidos pela Lista de Verificação da Lei nº 14.133/2021, ou importe um arquivo <strong>JSON</strong> existente.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé Institucional IFMA -->
+  <footer class="bg-white border-t border-neutral-200 py-4 mt-8 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-500">
+      <span>IFMA • Baseado no Modelo de Lista de Verificação de Contratações Diretas — AGU (Lei nº 14.133/2021 — <span id="footer-versao-agu">Set/2024</span>)</span>
+      <span id="autosave-status" class="text-ifma-green font-semibold">Alterações salvas automaticamente no navegador</span>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL DE PREVIEW DO DOCUMENTO OFICIAL (A4)
+  ====================================================================== -->
+  <div id="modal-preview" class="fixed inset-0 z-50 hidden flex-col bg-neutral-900/75 backdrop-blur-xs no-print">
+    <!-- Barra Superior do Modal -->
+    <div class="bg-ifma-green-darker text-white px-4 sm:px-6 py-3.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 shrink-0 shadow-md">
+      <div class="flex items-center gap-2.5">
+        <span class="p-1.5 rounded-lg bg-white/15 text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </span>
+        <div>
+          <h3 class="text-sm sm:text-base font-bold leading-tight">Pré-visualização do Documento Oficial — IFMA</h3>
+          <p class="text-xs text-emerald-100">Confira a formatação final antes de exportar para PDF ou DOCX</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          id="btn-preview-pdf"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-red hover:bg-ifma-red-dark text-white transition cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          <span>Baixar PDF</span>
+        </button>
+
+        <button
+          id="btn-preview-docx"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white transition cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          <span>Baixar DOCX</span>
+        </button>
+
+        <button
+          id="btn-preview-fechar"
+          type="button"
+          class="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/15 hover:bg-white/25 text-white border border-white/20 transition cursor-pointer"
+        >
+          <span>Fechar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Área Rolável com Folha Estilo A4 -->
+    <div id="preview-scroll-area" class="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center">
+      <div
+        id="preview-document-sheet"
+        class="bg-white text-neutral-900 w-full max-w-[210mm] min-h-[297mm] h-fit shadow-2xl rounded-sm p-6 sm:p-10 md:p-12 border border-neutral-300"
+      >
+        <!-- Conteúdo gerado dinamicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL DE CONFIRMAÇÃO (SUBSTITUI confirm() NATIVO)
+  ====================================================================== -->
+  <div id="modal-confirm" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/50 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 border border-neutral-200">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-ifma-red-light text-ifma-red flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-neutral-900">Limpar todos os dados?</h3>
+          <p class="text-sm text-neutral-600 mt-1">
+            Esta ação apagará todas as respostas, indicações de documentos e dados do processo atual. Caso deseje manter uma cópia, exporte em JSON antes.
+          </p>
+        </div>
+      </div>
+      <div class="mt-6 flex items-center justify-end gap-2.5">
+        <button id="modal-cancel" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 transition cursor-pointer">
+          Cancelar
+        </button>
+        <button id="modal-confirm-btn" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-ifma-red hover:bg-ifma-red-dark transition cursor-pointer">
+          Sim, limpar tudo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       NOTIFICAÇÃO TOAST (SUBSTITUI alert() NATIVO)
+  ====================================================================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none no-print"></div>
+
+  <!-- =====================================================================
+       SCRIPT PRINCIPAL DA APLICAÇÃO
+  ====================================================================== -->
+  <script>
+    /**
+     * =========================================================================
+     * 1. DEFINIÇÃO OFICIAL DAS LISTAS DE VERIFICAÇÃO (AGU - LEI 14.133/2021)
+     * =========================================================================
+     */
+    const CHECKLIST_SCHEMA = [
+      {
+        id: 'L1',
+        codigo: 'Lista 1',
+        titulo: 'LISTA DE VERIFICAÇÃO 1 - VERIFICAÇÃO COMUM A TODAS AS CONTRATAÇÕES DIRETAS',
+        badgeColor: 'bg-ifma-green-light text-ifma-green-darker border-ifma-green/35',
+        condicao: (state) => state.modalidade !== null,
+        itens: [
+          { id: 'L1_01', texto: 'Houve abertura de processo administrativo?' },
+          { id: 'L1_02', texto: 'Foi adotada a forma eletrônica para o processo administrativo ou, caso adotada forma em papel, houve a devida justificativa?' },
+          { id: 'L1_03', texto: 'A autoridade competente designou os agentes públicos responsáveis pelo desempenho das funções essenciais à contratação?' },
+          { id: 'L1_04', texto: 'Consta documento de formalização de demanda?' },
+          { id: 'L1_05', texto: 'Foi certificado que objeto da contratação está contemplado no Plano de Contratações Anual?' },
+          { id: 'L1_06', texto: 'Foi certificado que objeto da contratação está compatível com a Lei de Diretrizes Orçamentárias?' },
+          { id: 'L1_07', texto: 'Há Estudo Técnico Preliminar?' },
+          { id: 'L1_08', texto: 'O Estudo Técnico Preliminar contempla ao menos a descrição da necessidade, a estimativa do quantitativo, a estimativa do valor, a manifestação sobre o parcelamento e a manifestação sobre a viabilidade da contratação?' },
+          { id: 'L1_09', texto: 'Há Análise de Riscos?' },
+          { id: 'L1_10', texto: 'Caso não existam os Estudos Técnicos Preliminares ou a Análise de Riscos, houve manifestação justificando a ausência do documento?' },
+          { id: 'L1_11', texto: 'Consta justificativa para a ausência dos itens não obrigatórios dos Estudos Técnicos Preliminares?' },
+          { id: 'L1_12', texto: 'Houve manifestação justificando as exigências de práticas e/ou critérios de sustentabilidade ou sua dispensa no caso concreto?' },
+          { id: 'L1_13', texto: 'Foi consultado o Guia Nacional de Contratações Sustentáveis da Consultoria Geral da União para inserção dos critérios de sustentabilidade?' },
+          { id: 'L1_14', texto: 'Há termo de referência?' },
+          { id: 'L1_15', texto: 'Foi certificada a utilização de modelos de minutas padronizados de Termos de Referência da Advocacia-Geral União, ou as contidas no catálogo eletrônico de padronização, ou houve justificativa para sua não utilização?' },
+          { id: 'L1_16', texto: 'Sendo adotado modelo padronizado de termo de referência, foram justificadas e destacadas visualmente, no processo, eventuais alterações?' },
+          { id: 'L1_17', texto: 'Foram utilizados os modelos padronizados de instrumentos contratuais da Advocacia-Geral da União, com eventuais alterações destacadas e justificadas, ou as contidas no catálogo eletrônico de padronização?' },
+          { id: 'L1_18', texto: 'Foi demonstrado que a previsão de recursos orçamentários é compatível com a despesa estimada?' },
+          { id: 'L1_19', texto: 'Tratando-se de atividade de custeio, foi certificada a observância do art. 3º do Decreto 10.193/19?' },
+          { id: 'L1_20', texto: 'Tratando-se de contratação que envolva a criação, expansão ou aperfeiçoamento de ação governamental que acarrete aumento da despesa, constam dos autos estimativa do impacto orçamentário-financeiro e declaração sobre adequação orçamentária e financeira?' },
+          { id: 'L1_21', texto: 'Consta dos autos certificação acompanhada de comprovação de que o contratado preenche os requisitos de habilitação e de qualificação mínima necessários?' },
+          { id: 'L1_22', texto: 'Foi juntada aos autos consulta ao CADIN?' },
+          { id: 'L1_23', texto: 'Houve a autorização da autoridade competente?' },
+          { id: 'L1_24', texto: 'Sendo adotado registro de preços, a contratação abrange mais de um órgão ou entidade?' }
+        ]
+      },
+      {
+        id: 'L2A',
+        codigo: 'Lista 2A',
+        titulo: 'LISTA DE VERIFICAÇÃO 2A - VERIFICAÇÃO ESPECÍFICA E EXCLUSIVA PARA CONTRATAÇÃO POR INEXIGIBILIDADE',
+        badgeColor: 'bg-ifma-blue-light text-ifma-blue border-ifma-blue/30',
+        condicao: (state) => state.modalidade === 'inexigibilidade',
+        itens: [
+          { id: 'L2A_01', texto: 'Consta manifestação técnica demonstrando a inviabilidade de competição?' },
+          { id: 'L2A_02', texto: 'Houve justificativa do preço com base no regulamento pertinente?' },
+          { id: 'L2A_03', texto: 'Tratando-se de contratação de fornecedor exclusivo com base no art. 74, I, da Lei 14133/21, consta documento idôneo capaz de comprovar a exclusividade?' },
+          { id: 'L2A_04', texto: 'Tratando-se de contratação de fornecedor exclusivo com base no art. 74, I, da Lei 14133/21, foi observada a vedação de preferência por marca específica?' },
+          { id: 'L2A_05', texto: 'Tratando-se de contratação de profissional do setor artístico por meio de empresário exclusivo com base no art. 74, II, da Lei 14133/21, consta documento idôneo que comprove a exclusividade permanente e contínua da representação, no País ou em Estado específico, sem limitação a evento ou local específico?' },
+          { id: 'L2A_06', texto: 'Tratando-se de serviço técnico especializado com base no art. 74, III, da Lei 14133/21, com observância da vedação de contratar serviços de publicidade e divulgação, consta cláusula vedando a subcontratação de empresas ou a atuação de profissionais distintos daqueles que tenham justificado a inexigibilidade?' },
+          { id: 'L2A_07', texto: 'Tratando-se de aquisição ou locação de imóvel com base no art. 74, V, da Lei 14133/21, consta avaliação prévia do bem; certificação da inexistência de imóveis públicos vagos e disponíveis que atendam ao objeto; e justificativas que demonstrem a singularidade do imóvel a ser comprado ou locado pela Administração e que evidenciem vantagem para ela?' }
+        ]
+      },
+      {
+        id: 'L2B',
+        codigo: 'Lista 2B',
+        titulo: 'LISTA DE VERIFICAÇÃO 2B – VERIFICAÇÃO ESPECÍFICA E EXCLUSIVA PARA CONTRATAÇÃO POR DISPENSA',
+        badgeColor: 'bg-ifma-green-light text-ifma-green-dark border-ifma-green/40',
+        condicao: (state) => state.modalidade === 'dispensa',
+        itens: [
+          { id: 'L2B_01', texto: 'Consta manifestação técnica justificando o enquadramento da contratação expressamente nas hipóteses do art. 75 da Lei 14133/21?' },
+          { id: 'L2B_02', texto: 'Consta justificativa do preço baseada em pesquisa ou certificação de que a estimativa ocorrerá concomitantemente com a seleção da proposta mais vantajosa, tudo em conformidade com a Instrução Normativa nº 65/2021?' },
+          { id: 'L2B_03', texto: 'Tratando-se de situação em que não é possível estimar o valor do objeto na forma estabelecida nos §§ 1º, 2º e 3º do art. 23 da Lei 14133/21, o contratado comprova por algum meio idôneo que os preços estão em conformidade com os praticados em contratações semelhantes de objetos de mesma natureza, tais como notas fiscais emitidas para outros contratantes no período de até 1 (um) ano anterior à data da contratação pela Administração?' },
+          { id: 'L2B_04', texto: 'Tratando-se de dispensa fundada nos incisos I ou II do art. 75 da Lei 14.133/21, foi demonstrado respeito ao limite de valor considerando o somatório do valor da contratação com o valor de outros objetos da mesma natureza contratados pela mesma unidade gestora no mesmo exercício financeiro?' },
+          { id: 'L2B_05', texto: 'Tratando-se de dispensa fundada nos incisos I ou II do art. 75 da Lei 14133/21, a autoridade declarou que a contratação será precedida de divulgação de aviso em sítio eletrônico oficial, pelo prazo mínimo de 3 (três) dias úteis, com atendimento da IN SEGES 67/21 para busca da proposta mais vantajosa?' },
+          { id: 'L2B_06', texto: 'Tratando-se de dispensa fundada nos incisos I ou II do art. 75 da Lei 14133/21, a contratação será paga por meio de cartão de pagamento e com divulgação do extrato no Portal Nacional de Contratações Públicas (PNCP)?' },
+          { id: 'L2B_07', texto: 'Em caso negativo, houve justificativa para não adoção dessa forma de pagamento?' }
+        ]
+      },
+      {
+        id: 'L3A',
+        codigo: 'Lista 3A',
+        titulo: 'LISTA DE VERIFICAÇÃO 3A - VERIFICAÇÃO ESPECÍFICA PARA AQUISIÇÕES POR INEXIGIBILIDADE OU POR DISPENSA DE LICITAÇÃO',
+        badgeColor: 'bg-ifma-red-light text-ifma-red border-ifma-red/30',
+        condicao: (state) => state.modalidade !== null && (state.tipoObjeto === 'aquisicao' || state.tipoObjeto === 'ambos'),
+        itens: [
+          { id: 'L3A_01', texto: 'Há justificativa para não utilização de sistema de registro de preços?' },
+          { id: 'L3A_02', texto: 'Há manifestação sobre o atendimento do princípio da padronização?' },
+          { id: 'L3A_03', texto: 'Consta informação do uso ou justificativa para não utilização de catálogo eletrônico de padronização?' },
+          { id: 'L3A_04', texto: 'Caso haja indicação de marca ou modelo, consta justificativa para a indicação?' },
+          { id: 'L3A_05', texto: 'Havendo vedação de determinada marca ou produto, foi indicada a existência de processo administrativo em que esteja comprovado que não atendem às necessidades da Administração?' },
+          { id: 'L3A_06', texto: 'Há certificação de que a opção pela aquisição é mais vantajosa do que eventuais alternativas, como a locação de bens?' }
+        ]
+      },
+      {
+        id: 'L3B',
+        codigo: 'Lista 3B',
+        titulo: 'LISTA DE VERIFICAÇÃO 3B - VERIFICAÇÃO ESPECÍFICA PARA CONTRATAÇÃO DE SERVIÇOS EM GERAL POR INEXIGIBILIDADE OU POR DISPENSA DE LICITAÇÃO',
+        badgeColor: 'bg-neutral-100 text-neutral-800 border-neutral-300',
+        condicao: (state) => state.modalidade !== null && (state.tipoObjeto === 'servicos' || state.tipoObjeto === 'ambos'),
+        itens: [
+          { id: 'L3B_01', texto: 'Houve manifestação quanto à observância do princípio da padronização?' },
+          { id: 'L3B_02', texto: 'Consta informação do uso ou justificativa para não utilização de catálogo eletrônico de padronização?' },
+          { id: 'L3B_03', texto: 'Foi certificado que os serviços a serem contratados se enquadram como as atividades materiais acessórias, instrumentais ou complementares aos assuntos que constituam área de competência legal do órgão ou da entidade?' },
+          { id: 'L3B_04', texto: 'Caso a Administração pretenda contratar mais de uma empresa para a execução do objeto, está atestado nos autos que (i) não há perda de economia de escala, (ii) é possível e conveniente a execução simultânea e (iii) há controle individualizado para a execução de cada contratado?' }
+        ]
+      }
+    ];
+
+    const STORAGE_KEY = 'lista_verificacao_14133_state_v1';
+    const OPCOES_RESPOSTA = ['Sim', 'Não', 'Não se aplica'];
+
+    /**
+     * =========================================================================
+     * 2. ESTADO GLOBAL DA APLICAÇÃO
+     * =========================================================================
+     */
+    function createInitialState() {
+      const hoje = new Date().toISOString().split('T')[0];
+      return {
+        versao: '1.0',
+        modelo: 'AGU-Lei-14133',
+        modalidade: null, // 'dispensa' | 'inexigibilidade' | null
+        tipoObjeto: 'aquisicao', // 'aquisicao' | 'servicos' | 'ambos' | 'nenhum'
+        metadados: {
+          orgao: 'Instituto Federal de Educação, Ciência e Tecnologia do Maranhão — IFMA',
+          processo: '',
+          linkProcesso: '',
+          objeto: '',
+          versaoAgu: 'Set/2024',
+          responsavel: '',
+          data: hoje
+        },
+        respostas: {} // { [itemId]: { resposta: 'Sim'|'Não'|'Não se aplica'|'', local: '' } }
+      };
+    }
+
+    let appState = createInitialState();
+    let filtroStatus = 'todos';
+    let termoBusca = '';
+
+    /**
+     * =========================================================================
+     * 3. PERSISTÊNCIA LOCAL (LOCALSTORAGE)
+     * =========================================================================
+     */
+    function salvarLocalStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        const statusEl = document.getElementById('autosave-status');
+        if (statusEl) {
+          const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          statusEl.textContent = `Salvo automaticamente às ${hora}`;
+        }
+      } catch (e) {
+        console.warn('Não foi possível salvar no localStorage:', e);
+      }
+    }
+
+    function carregarLocalStorage() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return;
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object') {
+          appState = {
+            ...createInitialState(),
+            ...parsed,
+            metadados: {
+              ...createInitialState().metadados,
+              ...(parsed.metadados || {})
+            },
+            respostas: parsed.respostas || {}
+          };
+        }
+      } catch (e) {
+        console.warn('Erro ao restaurar dados locais:', e);
+      }
+    }
+
+    /**
+     * =========================================================================
+     * 4. NOTIFICAÇÕES TOAST
+     * =========================================================================
+     */
+    function mostrarToast(mensagem, tipo = 'sucesso') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+
+      const estilos = {
+        sucesso: 'bg-ifma-green text-white border-ifma-green-dark',
+        erro: 'bg-ifma-red text-white border-ifma-red-dark',
+        info: 'bg-ifma-blue text-white border-ifma-blue-dark'
+      };
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-medium transition-all duration-300 transform translate-y-2 opacity-0 ${estilos[tipo] || estilos.info}`;
+      toast.innerHTML = `
+        <span class="flex-1">${escapeHtml(mensagem)}</span>
+        <button type="button" class="text-white/70 hover:text-white cursor-pointer" aria-label="Fechar">&times;</button>
+      `;
+
+      toast.querySelector('button').addEventListener('click', () => {
+        toast.remove();
+      });
+
+      container.appendChild(toast);
+
+      // Animação de entrada
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3800);
+    }
+
+    /**
+     * Escapa caracteres HTML para evitar injeção XSS ao renderizar strings
+     */
+    function escapeHtml(str) {
+      if (typeof str !== 'string') return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /**
+     * Valida e normaliza a URL do processo para uso seguro em links (Preview, PDF e DOCX)
+     */
+    function normalizarUrl(url) {
+      if (typeof url !== 'string') return '';
+      const limpa = url.trim();
+      if (!limpa) return '';
+      // Bloqueia protocolos potencialmente perigosos
+      if (/^(javascript|data|vbscript):/i.test(limpa)) return '';
+      if (/^https?:\/\//i.test(limpa)) return limpa;
+      return `https://${limpa}`;
+    }
+
+    /**
+     * =========================================================================
+     * 5. LÓGICA DE RENDERIZAÇÃO DA INTERFACE
+     * =========================================================================
+     */
+    function getSecoesAtivas() {
+      return CHECKLIST_SCHEMA.filter((secao) => secao.condicao(appState));
+    }
+
+    function sincronizarMetadadosUI() {
+      document.getElementById('meta-orgao').value = appState.metadados.orgao || '';
+      document.getElementById('meta-processo').value = appState.metadados.processo || '';
+      document.getElementById('meta-link-processo').value = appState.metadados.linkProcesso || '';
+      document.getElementById('meta-objeto').value = appState.metadados.objeto || '';
+      document.getElementById('meta-versao-agu').value = appState.metadados.versaoAgu || '';
+      document.getElementById('meta-responsavel').value = appState.metadados.responsavel || '';
+      document.getElementById('meta-data').value = appState.metadados.data || '';
+      atualizarCabecalhoImpressao();
+    }
+
+    function atualizarCabecalhoImpressao() {
+      const orgaoEl = document.getElementById('print-orgao');
+      const subEl = document.getElementById('print-subtitulo');
+      const versaoAgu = appState.metadados.versaoAgu?.trim() || 'Não informada';
+
+      // Atualiza exibição dinâmica da versão do modelo AGU no cabeçalho e rodapé
+      const headerVersaoEl = document.getElementById('header-versao-agu');
+      const footerVersaoEl = document.getElementById('footer-versao-agu');
+      if (headerVersaoEl) headerVersaoEl.textContent = versaoAgu;
+      if (footerVersaoEl) footerVersaoEl.textContent = versaoAgu;
+
+      orgaoEl.textContent = appState.metadados.orgao?.trim() || 'INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO MARANHÃO';
+      const modTexto = appState.modalidade === 'dispensa'
+        ? 'Dispensa de Licitação (Art. 75)'
+        : appState.modalidade === 'inexigibilidade'
+          ? 'Inexigibilidade de Licitação (Art. 74)'
+          : 'Modalidade não selecionada';
+
+      const processoTexto = appState.metadados.processo?.trim() || '';
+      const linkUrl = normalizarUrl(appState.metadados.linkProcesso);
+      const processoHtml = processoTexto
+        ? ` — Processo SUAP: ${
+            linkUrl
+              ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" style="color: #2d2d87; text-decoration: underline;">${escapeHtml(processoTexto)}</a>`
+              : escapeHtml(processoTexto)
+          }`
+        : '';
+
+      subEl.innerHTML = `${escapeHtml(modTexto)} • Modelo AGU (${escapeHtml(versaoAgu)})${processoHtml}`;
+    }
+
+    function renderizarSeletores() {
+      // Botões de Modalidade
+      document.querySelectorAll('.modalidade-btn').forEach((btn) => {
+        const valor = btn.getAttribute('data-modalidade');
+        const ativo = appState.modalidade === valor;
+        const dot = btn.querySelector('.indicator-dot');
+
+        if (ativo) {
+          btn.className = 'modalidade-btn group text-left p-4 rounded-xl border-2 border-ifma-green bg-ifma-green-light/80 shadow-xs transition cursor-pointer focus:outline-none';
+          dot.className = 'indicator-dot w-4 h-4 rounded-full border-2 border-ifma-green bg-ifma-green flex items-center justify-center';
+          dot.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-white"></span>';
+        } else {
+          btn.className = 'modalidade-btn group text-left p-4 rounded-xl border-2 border-neutral-200 bg-white hover:border-ifma-green/50 hover:bg-neutral-50 transition cursor-pointer focus:outline-none';
+          dot.className = 'indicator-dot w-4 h-4 rounded-full border-2 border-neutral-300 flex items-center justify-center';
+          dot.innerHTML = '';
+        }
+      });
+
+      // Botões de Natureza do Objeto
+      document.querySelectorAll('.objeto-btn').forEach((btn) => {
+        const valor = btn.getAttribute('data-objeto');
+        const ativo = appState.tipoObjeto === valor;
+        if (ativo) {
+          btn.className = 'objeto-btn text-left p-3 rounded-xl border-2 border-ifma-green bg-ifma-green-light/70 text-ifma-green-darker transition cursor-pointer focus:outline-none';
+        } else {
+          btn.className = 'objeto-btn text-left p-3 rounded-xl border-2 border-neutral-200 bg-white hover:border-ifma-green/40 hover:bg-neutral-50 text-neutral-800 transition cursor-pointer focus:outline-none';
+        }
+      });
+
+      // Badges de Listas Ativas
+      const badgesContainer = document.getElementById('active-lists-badges');
+      const secoesAtivas = getSecoesAtivas();
+      if (secoesAtivas.length === 0) {
+        badgesContainer.innerHTML = '<span class="text-xs text-neutral-400 italic">Nenhuma modalidade selecionada</span>';
+      } else {
+        badgesContainer.innerHTML = secoesAtivas
+          .map(
+            (s) =>
+              `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border ${s.badgeColor}">
+                ${s.codigo} <span class="opacity-75">(${s.itens.length} itens)</span>
+              </span>`
+          )
+          .join('');
+      }
+
+      // Botões de Filtro
+      document.querySelectorAll('.filtro-btn').forEach((btn) => {
+        const f = btn.getAttribute('data-filtro');
+        if (f === filtroStatus) {
+          btn.className = 'filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-ifma-green text-white transition cursor-pointer';
+        } else {
+          btn.className = 'filtro-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition cursor-pointer';
+        }
+      });
+    }
+
+    function atualizarEstatisticas() {
+      const secoesAtivas = getSecoesAtivas();
+      const dashboard = document.getElementById('dashboard-panel');
+
+      if (secoesAtivas.length === 0) {
+        dashboard.classList.add('hidden');
+        return;
+      }
+
+      dashboard.classList.remove('hidden');
+
+      let total = 0;
+      let sim = 0;
+      let nao = 0;
+      let na = 0;
+      let pendentes = 0;
+
+      secoesAtivas.forEach((secao) => {
+        let respondidosSecao = 0;
+        secao.itens.forEach((item) => {
+          total++;
+          const resp = appState.respostas[item.id]?.resposta || '';
+          if (resp === 'Sim') {
+            sim++;
+            respondidosSecao++;
+          } else if (resp === 'Não') {
+            nao++;
+            respondidosSecao++;
+          } else if (resp === 'Não se aplica') {
+            na++;
+            respondidosSecao++;
+          } else {
+            pendentes++;
+          }
+        });
+
+        // Atualiza contador individual no cabeçalho da seção, se já estiver no DOM
+        const badgeSecao = document.getElementById(`secao-progresso-${secao.id}`);
+        if (badgeSecao) {
+          badgeSecao.textContent = `${respondidosSecao}/${secao.itens.length} respondidos`;
+        }
+      });
+
+      const respondidos = total - pendentes;
+      const pct = total > 0 ? Math.round((respondidos / total) * 100) : 0;
+
+      document.getElementById('stat-progresso-texto').textContent = `${pct}% (${respondidos}/${total})`;
+      document.getElementById('stat-progresso-barra').style.width = `${pct}%`;
+      document.getElementById('stat-sim').textContent = sim;
+      document.getElementById('stat-nao').textContent = nao;
+      document.getElementById('stat-na').textContent = na;
+      document.getElementById('stat-pendentes').textContent = pendentes;
+    }
+
+    function renderizarChecklist() {
+      const container = document.getElementById('checklist-container');
+      const secoesAtivas = getSecoesAtivas();
+
+      if (secoesAtivas.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl border-2 border-dashed border-ifma-green/35 p-10 text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-ifma-green-light text-ifma-green flex items-center justify-center mb-4">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-neutral-800">Selecione o Tipo de Contratação Direta</h3>
+            <p class="text-sm text-neutral-500 max-w-md mx-auto mt-1.5">
+              Escolha acima entre <strong>Dispensa de Licitação</strong> ou <strong>Inexigibilidade</strong> para carregar os itens exigidos pela Lista de Verificação da Lei nº 14.133/2021, ou importe um arquivo <strong>JSON</strong> existente.
+            </p>
+          </div>
+        `;
+        atualizarEstatisticas();
+        return;
+      }
+
+      const buscaLower = termoBusca.trim().toLowerCase();
+      let totalVisiveisGlobal = 0;
+      const htmlSecoes = [];
+
+      secoesAtivas.forEach((secao) => {
+        const itensFiltrados = secao.itens
+          .map((item, idx) => ({ ...item, numero: idx + 1 }))
+          .filter((item) => {
+            const dado = appState.respostas[item.id] || { resposta: '', local: '' };
+            const resp = dado.resposta || '';
+
+            // Filtro por status
+            if (filtroStatus === 'pendente' && resp !== '') return false;
+            if (filtroStatus !== 'todos' && filtroStatus !== 'pendente' && resp !== filtroStatus) return false;
+
+            // Filtro por texto
+            if (buscaLower) {
+              const textoMatch = item.texto.toLowerCase().includes(buscaLower);
+              const localMatch = (dado.local || '').toLowerCase().includes(buscaLower);
+              if (!textoMatch && !localMatch) return false;
+            }
+            return true;
+          });
+
+        totalVisiveisGlobal += itensFiltrados.length;
+
+        if (itensFiltrados.length === 0) return;
+
+        const linhasHtml = itensFiltrados
+          .map((item) => {
+            const dado = appState.respostas[item.id] || { resposta: '', local: '' };
+            const respAtual = dado.resposta || '';
+            const localAtual = dado.local || '';
+
+            // Borda lateral colorida conforme status (Paleta IFMA)
+            let statusBarClass = 'border-l-4 border-l-neutral-200';
+            if (respAtual === 'Sim') statusBarClass = 'border-l-4 border-l-ifma-green bg-ifma-green-light/45';
+            else if (respAtual === 'Não') statusBarClass = 'border-l-4 border-l-ifma-red bg-ifma-red-light/55';
+            else if (respAtual === 'Não se aplica') statusBarClass = 'border-l-4 border-l-neutral-400 bg-neutral-50/80';
+
+            const botoesResposta = OPCOES_RESPOSTA.map((opcao) => {
+              const selecionado = respAtual === opcao;
+              let btnClass = 'bg-white text-neutral-600 border-neutral-300 hover:bg-neutral-50';
+              if (selecionado) {
+                if (opcao === 'Sim') btnClass = 'bg-ifma-green text-white border-ifma-green shadow-xs';
+                else if (opcao === 'Não') btnClass = 'bg-ifma-red text-white border-ifma-red shadow-xs';
+                else btnClass = 'bg-neutral-600 text-white border-neutral-600 shadow-xs';
+              }
+              return `
+                <button
+                  type="button"
+                  data-item-id="${item.id}"
+                  data-opcao="${opcao}"
+                  class="resp-btn flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition cursor-pointer whitespace-nowrap ${btnClass}"
+                >
+                  ${opcao}
+                </button>
+              `;
+            }).join('');
+
+            return `
+              <div class="p-4 sm:px-6 sm:py-4 border-t border-neutral-100 ${statusBarClass} print-break-avoid transition-colors">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-5 items-start lg:items-center">
+                  <!-- Coluna 1: Pergunta -->
+                  <div class="lg:col-span-6 flex items-start gap-2.5">
+                    <span class="inline-flex items-center justify-center min-w-[26px] h-[26px] px-1.5 rounded-lg bg-neutral-100 text-neutral-700 text-xs font-bold shrink-0 mt-0.5">
+                      ${item.numero}
+                    </span>
+                    <p class="text-sm text-neutral-800 leading-relaxed">${escapeHtml(item.texto)}</p>
+                  </div>
+
+                  <!-- Coluna 2: Resposta -->
+                  <div class="lg:col-span-3">
+                    <div class="text-[11px] font-semibold text-neutral-400 uppercase mb-1 lg:hidden">Atende plenamente a exigência?</div>
+                    <div class="flex items-center gap-1.5 no-print">
+                      ${botoesResposta}
+                    </div>
+                    <!-- Texto visível apenas na impressão -->
+                    <div class="hidden print:block text-xs font-bold">
+                      ${respAtual || 'Não respondido'}
+                    </div>
+                  </div>
+
+                  <!-- Coluna 3: Indicação do local (SUAP / fls.) -->
+                  <div class="lg:col-span-3">
+                    <div class="text-[11px] font-semibold text-neutral-400 uppercase mb-1 lg:hidden">Indicação no processo (doc. / fls. / SUAP)</div>
+                    <input
+                      type="text"
+                      data-local-id="${item.id}"
+                      value="${escapeHtml(localAtual)}"
+                      placeholder="Doc. / fls. / nº SUAP..."
+                      class="local-input w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-ifma-green focus:border-ifma-green transition"
+                    />
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+
+        htmlSecoes.push(`
+          <section class="bg-white rounded-2xl shadow-xs border border-neutral-200 overflow-hidden print-section">
+            <!-- Cabeçalho da Seção (Verde Oficial IFMA) -->
+            <div class="bg-ifma-green text-white px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-start sm:items-center gap-2.5">
+                <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-black/20 text-white shrink-0">
+                  ${secao.codigo}
+                </span>
+                <h3 class="text-xs sm:text-sm font-bold tracking-wide leading-snug">
+                  ${escapeHtml(secao.titulo)}
+                </h3>
+              </div>
+              <span id="secao-progresso-${secao.id}" class="text-xs font-semibold text-white/90 shrink-0 no-print"></span>
+            </div>
+
+            <!-- Cabeçalho das Colunas (Desktop) -->
+            <div class="hidden lg:grid lg:grid-cols-12 gap-5 px-6 py-2.5 bg-neutral-50 border-b border-neutral-200 text-[11px] font-bold text-neutral-600 uppercase tracking-wider">
+              <div class="lg:col-span-6">Item de Verificação</div>
+              <div class="lg:col-span-3">Atende plenamente a exigência?</div>
+              <div class="lg:col-span-3">Local no Processo (doc. / fls. / SUAP)</div>
+            </div>
+
+            <!-- Linhas dos Itens -->
+            <div>
+              ${linhasHtml}
+            </div>
+          </section>
+        `);
+      });
+
+      if (totalVisiveisGlobal === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl border border-neutral-200 p-10 text-center">
+            <p class="text-neutral-600 font-medium">Nenhum item encontrado com os filtros aplicados.</p>
+            <button id="btn-limpar-filtros" type="button" class="mt-3 px-4 py-2 rounded-xl bg-ifma-green text-white text-xs font-semibold hover:bg-ifma-green-dark transition cursor-pointer">
+              Limpar filtros
+            </button>
+          </div>
+        `;
+        document.getElementById('btn-limpar-filtros')?.addEventListener('click', () => {
+          filtroStatus = 'todos';
+          termoBusca = '';
+          document.getElementById('input-busca').value = '';
+          renderizarTudo();
+        });
+      } else {
+        container.innerHTML = htmlSecoes.join('');
+      }
+
+      atualizarEstatisticas();
+    }
+
+    function renderizarTudo() {
+      sincronizarMetadadosUI();
+      renderizarSeletores();
+      renderizarChecklist();
+    }
+
+    /**
+     * =========================================================================
+     * 6. EXPORTAÇÃO E IMPORTAÇÃO EM JSON
+     * =========================================================================
+     */
+    function exportarJSON() {
+      try {
+        const secoesAtivas = getSecoesAtivas();
+        const versaoAgu = appState.metadados.versaoAgu?.trim() || 'Set/2024';
+        const payload = {
+          versao: appState.versao,
+          modelo: `AGU-Lei-14133-${versaoAgu}`,
+          exportadoEm: new Date().toISOString(),
+          configuracao: {
+            modalidade: appState.modalidade,
+            tipoObjeto: appState.tipoObjeto,
+            listasAtivas: secoesAtivas.map((s) => s.id)
+          },
+          metadados: { ...appState.metadados },
+          respostas: { ...appState.respostas }
+        };
+
+        const jsonStr = JSON.stringify(payload, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const modNome = appState.modalidade || 'rascunho';
+        const procLimpo = (appState.metadados.processo || '')
+          .replace(/[^a-zA-Z0-9_-]/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '');
+        const dataStr = new Date().toISOString().split('T')[0];
+        const nomeArquivo = `lista-verificacao-${modNome}${procLimpo ? '-' + procLimpo : ''}-${dataStr}.json`;
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = nomeArquivo;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        mostrarToast(`Arquivo "${nomeArquivo}" exportado com sucesso!`, 'sucesso');
+      } catch (err) {
+        console.error('Erro ao exportar JSON:', err);
+        mostrarToast('Ocorreu um erro ao gerar o arquivo JSON.', 'erro');
+      }
+    }
+
+    function importarJSON(arquivo) {
+      if (!arquivo) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const dados = JSON.parse(e.target.result);
+
+          if (!dados || typeof dados !== 'object') {
+            throw new Error('Estrutura JSON inválida.');
+          }
+
+          // Suporta tanto o formato exportado (com objeto configuracao) quanto o formato interno direto
+          const modalidadeImportada = dados.configuracao?.modalidade ?? dados.modalidade ?? null;
+          const tipoObjetoImportado = dados.configuracao?.tipoObjeto ?? dados.tipoObjeto ?? 'aquisicao';
+
+          const modalidadesValidas = [null, 'dispensa', 'inexigibilidade'];
+          const objetosValidos = ['aquisicao', 'servicos', 'ambos', 'nenhum'];
+
+          if (!modalidadesValidas.includes(modalidadeImportada)) {
+            throw new Error('Modalidade inválida no arquivo JSON (esperado "dispensa" ou "inexigibilidade").');
+          }
+
+          if (!objetosValidos.includes(tipoObjetoImportado)) {
+            throw new Error('Tipo de objeto inválido no arquivo JSON.');
+          }
+
+          // Sanitiza respostas importadas
+          const respostasLimpa = {};
+          if (dados.respostas && typeof dados.respostas === 'object') {
+            Object.keys(dados.respostas).forEach((itemId) => {
+              const itemDado = dados.respostas[itemId];
+              if (itemDado && typeof itemDado === 'object') {
+                const resp = OPCOES_RESPOSTA.includes(itemDado.resposta) ? itemDado.resposta : '';
+                const local = typeof itemDado.local === 'string' ? itemDado.local : '';
+                respostasLimpa[itemId] = { resposta: resp, local };
+              }
+            });
+          }
+
+          appState = {
+            ...createInitialState(),
+            modalidade: modalidadeImportada,
+            tipoObjeto: tipoObjetoImportado,
+            metadados: {
+              ...createInitialState().metadados,
+              ...(dados.metadados && typeof dados.metadados === 'object' ? dados.metadados : {})
+            },
+            respostas: respostasLimpa
+          };
+
+          // Reseta filtros para o usuário visualizar todos os itens importados
+          filtroStatus = 'todos';
+          termoBusca = '';
+          document.getElementById('input-busca').value = '';
+
+          salvarLocalStorage();
+          renderizarTudo();
+          mostrarToast('Arquivo JSON importado e lista adaptada com sucesso!', 'sucesso');
+        } catch (err) {
+          console.error('Erro ao importar JSON:', err);
+          mostrarToast(`Falha ao importar JSON: ${err.message}`, 'erro');
+        }
+      };
+
+      reader.onerror = () => {
+        mostrarToast('Não foi possível ler o arquivo selecionado.', 'erro');
+      };
+
+      reader.readAsText(arquivo, 'UTF-8');
+    }
+
+    /**
+     * =========================================================================
+     * 6.5. PREVIEW DO DOCUMENTO E EXPORTAÇÃO EM PDF / DOCX
+     * =========================================================================
+     */
+    function obterNomeBaseArquivo() {
+      const modNome = appState.modalidade || 'rascunho';
+      const procLimpo = (appState.metadados.processo || '')
+        .replace(/[^a-zA-Z0-9_-]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      const dataStr = new Date().toISOString().split('T')[0];
+      return `lista-verificacao-${modNome}${procLimpo ? '-' + procLimpo : ''}-${dataStr}`;
+    }
+
+    function formatarDataBR(isoDate) {
+      if (!isoDate) return '____/____/________';
+      const partes = isoDate.split('-');
+      if (partes.length !== 3) return isoDate;
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    function obterDescricaoModalidade() {
+      if (appState.modalidade === 'dispensa') return 'Dispensa de Licitação (Art. 75 da Lei nº 14.133/2021)';
+      if (appState.modalidade === 'inexigibilidade') return 'Inexigibilidade de Licitação (Art. 74 da Lei nº 14.133/2021)';
+      return 'Não definida';
+    }
+
+    function obterDescricaoObjeto() {
+      const mapa = {
+        aquisicao: 'Aquisição de Bens (Lista 3A)',
+        servicos: 'Serviços em Geral (Lista 3B)',
+        ambos: 'Aquisição de Bens e Serviços em Geral (Listas 3A e 3B)',
+        nenhum: 'Outro / Não se aplica'
+      };
+      return mapa[appState.tipoObjeto] || 'Não informado';
+    }
+
+    /**
+     * Gera o HTML oficial no padrão de Papel Timbrado IFMA para o Preview e PDF
+     */
+    function gerarHtmlDocumentoOficial() {
+      const secoesAtivas = getSecoesAtivas();
+      const orgao = escapeHtml(appState.metadados.orgao?.trim() || 'INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO MARANHÃO');
+      const processoTexto = appState.metadados.processo?.trim() || 'Não informado';
+      const processo = escapeHtml(processoTexto);
+      const linkProcessoUrl = normalizarUrl(appState.metadados.linkProcesso);
+      const processoExibicaoHtml = linkProcessoUrl
+        ? `<a href="${escapeHtml(linkProcessoUrl)}" target="_blank" rel="noopener noreferrer" style="color: #2d2d87; text-decoration: underline; font-weight: 600;">${processo}</a>`
+        : processo;
+      const objeto = escapeHtml(appState.metadados.objeto?.trim() || 'Não informado');
+      const versaoAgu = escapeHtml(appState.metadados.versaoAgu?.trim() || 'Não informada');
+      const responsavel = escapeHtml(appState.metadados.responsavel?.trim() || 'Não informado');
+      const dataFormatada = escapeHtml(formatarDataBR(appState.metadados.data));
+
+      let tabelasHtml = '';
+
+      secoesAtivas.forEach((secao) => {
+        const linhas = secao.itens
+          .map((item, idx) => {
+            const dado = appState.respostas[item.id] || { resposta: '', local: '' };
+            const resp = dado.resposta || 'Pendente';
+            const local = dado.local?.trim() || '—';
+
+            let respEstilo = 'color: #92400e; font-weight: 600;';
+            if (resp === 'Sim') respEstilo = 'color: #237a31; font-weight: 700;';
+            else if (resp === 'Não') respEstilo = 'color: #cd191e; font-weight: 700;';
+            else if (resp === 'Não se aplica') respEstilo = 'color: #525252; font-weight: 600;';
+
+            return `
+              <tr style="page-break-inside: avoid; break-inside: avoid;">
+                <td style="border: 1px solid #a3a3a3; padding: 6px 8px; text-align: center; font-size: 11px; color: #404040; width: 32px;">${idx + 1}</td>
+                <td style="border: 1px solid #a3a3a3; padding: 6px 8px; font-size: 11px; line-height: 1.45; color: #171717;">${escapeHtml(item.texto)}</td>
+                <td style="border: 1px solid #a3a3a3; padding: 6px 8px; text-align: center; font-size: 11px; width: 105px; ${respEstilo}">${escapeHtml(resp)}</td>
+                <td style="border: 1px solid #a3a3a3; padding: 6px 8px; font-size: 11px; color: #262626; width: 150px; word-break: break-word;">${escapeHtml(local)}</td>
+              </tr>
+            `;
+          })
+          .join('');
+
+        tabelasHtml += `
+          <div style="margin-top: 18px;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+              <thead>
+                <tr>
+                  <th colspan="2" style="border: 1px solid #2f9e41; background-color: #2f9e41; color: #ffffff; padding: 7px 8px; text-align: left; font-size: 11px; font-weight: 700;">
+                    ${escapeHtml(secao.titulo)}
+                  </th>
+                  <th style="border: 1px solid #2f9e41; background-color: #2f9e41; color: #ffffff; padding: 7px 6px; text-align: center; font-size: 10px; font-weight: 700; width: 105px;">
+                    Atende plenamente a exigência?
+                  </th>
+                  <th style="border: 1px solid #2f9e41; background-color: #2f9e41; color: #ffffff; padding: 7px 6px; text-align: center; font-size: 10px; font-weight: 700; width: 150px;">
+                    Indicação no processo (doc. / fls. / SUAP)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                ${linhas}
+              </tbody>
+            </table>
+          </div>
+        `;
+      });
+
+      return `
+        <div style="font-family: 'Open Sans', Arial, sans-serif; color: #171717;">
+          <!-- Cabeçalho Oficial Padrão Papel Timbrado IFMA -->
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2.5px solid #2f9e41; padding-bottom: 12px; margin-bottom: 16px; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg width="34" height="45" viewBox="0 0 66 88" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                <circle cx="10" cy="10" r="10" fill="#cd191e"/>
+                <rect x="23" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="46" y="0" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="0" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="23" y="23" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="0" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="23" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="46" y="46" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="0" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+                <rect x="23" y="68" width="20" height="20" rx="3" fill="#2f9e41"/>
+              </svg>
+              <div>
+                <div style="font-size: 12px; font-weight: 800; color: #000000; line-height: 1.2;">INSTITUTO FEDERAL</div>
+                <div style="font-size: 10px; font-weight: 700; color: #000000; line-height: 1.2;">DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA</div>
+                <div style="font-size: 11px; font-weight: 400; color: #333333; line-height: 1.2;">Maranhão</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 12px; font-weight: 700; color: #165220;">
+                LISTA DE VERIFICAÇÃO — CONTRATAÇÕES DIRETAS
+              </div>
+              <div style="font-size: 10px; color: #525252; margin-top: 2px;">
+                Lei nº 14.133/2021 • Modelo AGU (${versaoAgu})
+              </div>
+            </div>
+          </div>
+
+          <!-- Unidade / Órgão -->
+          <div style="font-size: 11px; font-weight: 700; color: #171717; margin-bottom: 10px; text-transform: uppercase;">
+            ${orgao}
+          </div>
+
+          <!-- Quadro de Identificação -->
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 11px;">
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220; width: 22%;">Processo / SUAP:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px; width: 38%;">${processoExibicaoHtml}</td>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220; width: 15%;">Data:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px; width: 25%;">${dataFormatada}</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220;">Modalidade:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px;">${escapeHtml(obterDescricaoModalidade())}</td>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220;">Natureza:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px;">${escapeHtml(obterDescricaoObjeto())}</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220;">Objeto:</td>
+                <td colspan="3" style="border: 1px solid #d4d4d4; padding: 6px 8px;">${objeto}</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220;">Responsável:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px;">${responsavel}</td>
+                <td style="border: 1px solid #d4d4d4; background-color: #eef8f0; padding: 6px 8px; font-weight: 700; color: #165220;">Modelo AGU:</td>
+                <td style="border: 1px solid #d4d4d4; padding: 6px 8px;">${versaoAgu}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Tabelas das Listas Ativas -->
+          ${tabelasHtml}
+
+          <!-- Bloco de Assinatura -->
+          <div style="margin-top: 32px; page-break-inside: avoid; break-inside: avoid; text-align: center;">
+            <p style="font-size: 11px; color: #404040; margin-bottom: 36px;">
+              Data da verificação: ${dataFormatada}
+            </p>
+            <div style="width: 280px; margin: 0 auto; border-top: 1px solid #404040; padding-top: 6px;">
+              <div style="font-size: 11px; font-weight: 700; color: #171717;">${responsavel}</div>
+              <div style="font-size: 10px; color: #525252;">Agente Público Responsável pela Verificação — IFMA</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function abrirPreview() {
+      if (!appState.modalidade) {
+        mostrarToast('Selecione Dispensa ou Inexigibilidade para visualizar o preview.', 'info');
+        return;
+      }
+      const sheet = document.getElementById('preview-document-sheet');
+      sheet.innerHTML = gerarHtmlDocumentoOficial();
+
+      const modal = document.getElementById('modal-preview');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function fecharPreview() {
+      const modal = document.getElementById('modal-preview');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    async function exportarPDF() {
+      if (!appState.modalidade) {
+        mostrarToast('Selecione Dispensa ou Inexigibilidade antes de exportar para PDF.', 'info');
+        return;
+      }
+
+      if (typeof window.html2pdf === 'undefined') {
+        mostrarToast('Biblioteca PDF indisponível offline. Abrindo diálogo de impressão...', 'info');
+        window.print();
+        return;
+      }
+
+      try {
+        mostrarToast('Gerando arquivo PDF, aguarde...', 'info');
+
+        // Cria um container temporário fora da tela para renderizar o PDF com fidelidade
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = '-9999px';
+        wrapper.style.top = '0';
+        wrapper.style.width = '190mm';
+        wrapper.style.background = '#ffffff';
+        wrapper.innerHTML = gerarHtmlDocumentoOficial();
+        document.body.appendChild(wrapper);
+
+        const nomeArquivo = `${obterNomeBaseArquivo()}.pdf`;
+        const opcoes = {
+          margin: [10, 10, 12, 10],
+          filename: nomeArquivo,
+          enableLinks: true,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        await window.html2pdf().set(opcoes).from(wrapper).save();
+        document.body.removeChild(wrapper);
+        mostrarToast(`PDF "${nomeArquivo}" baixado com sucesso!`, 'sucesso');
+      } catch (err) {
+        console.error('Erro ao gerar PDF:', err);
+        mostrarToast('Erro ao gerar PDF. Tente usar a opção Imprimir.', 'erro');
+      }
+    }
+
+    async function exportarDOCX() {
+      if (!appState.modalidade) {
+        mostrarToast('Selecione Dispensa ou Inexigibilidade antes de exportar para DOCX.', 'info');
+        return;
+      }
+
+      const nomeBase = obterNomeBaseArquivo();
+
+      // Fallback para .doc compatível com Word caso a biblioteca docx não tenha carregado
+      if (typeof window.docx === 'undefined') {
+        try {
+          const htmlWord = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                  xmlns:w="urn:schemas-microsoft-com:office:word"
+                  xmlns="http://www.w3.org/TR/REC-html40">
+            <head><meta charset="utf-8"><title>Lista de Verificação</title></head>
+            <body>${gerarHtmlDocumentoOficial()}</body>
+            </html>
+          `;
+          const blob = new Blob(['\ufeff', htmlWord], { type: 'application/msword' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${nomeBase}.doc`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          mostrarToast(`Documento "${nomeBase}.doc" exportado (modo compatibilidade).`, 'sucesso');
+        } catch (err) {
+          mostrarToast('Erro ao exportar documento Word.', 'erro');
+        }
+        return;
+      }
+
+      try {
+        mostrarToast('Gerando arquivo DOCX, aguarde...', 'info');
+
+        const {
+          Document,
+          Packer,
+          Paragraph,
+          TextRun,
+          ExternalHyperlink,
+          Table,
+          TableRow,
+          TableCell,
+          WidthType,
+          AlignmentType,
+          BorderStyle,
+          ShadingType,
+          VerticalAlign
+        } = window.docx;
+
+        const orgao = appState.metadados.orgao?.trim() || 'INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO MARANHÃO';
+        const processo = appState.metadados.processo?.trim() || 'Não informado';
+        const linkProcessoUrl = normalizarUrl(appState.metadados.linkProcesso);
+        const objeto = appState.metadados.objeto?.trim() || 'Não informado';
+        const versaoAgu = appState.metadados.versaoAgu?.trim() || 'Não informada';
+        const responsavel = appState.metadados.responsavel?.trim() || 'Não informado';
+        const dataFormatada = formatarDataBR(appState.metadados.data);
+
+        const processoDocxRun = linkProcessoUrl && ExternalHyperlink
+          ? new ExternalHyperlink({
+              link: linkProcessoUrl,
+              children: [
+                new TextRun({
+                  text: processo,
+                  size: 18,
+                  font: 'Open Sans',
+                  color: '2D2D87',
+                  underline: {}
+                })
+              ]
+            })
+          : new TextRun({ text: processo, size: 18, font: 'Open Sans' });
+
+        // Borda padrão das células das tabelas do documento
+        const bordaPadrao = {
+          top: { style: BorderStyle.SINGLE, size: 4, color: 'A3A3A3' },
+          bottom: { style: BorderStyle.SINGLE, size: 4, color: 'A3A3A3' },
+          left: { style: BorderStyle.SINGLE, size: 4, color: 'A3A3A3' },
+          right: { style: BorderStyle.SINGLE, size: 4, color: 'A3A3A3' }
+        };
+
+        // Conteúdo (children) do documento DOCX
+        const children = [
+          // Cabeçalho: Órgão / Unidade
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 40 },
+            children: [new TextRun({ text: orgao, bold: true, size: 18, font: 'Open Sans', color: '165220' })]
+          }),
+          // Título do documento
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 60 },
+            children: [new TextRun({ text: 'LISTA DE VERIFICAÇÃO — CONTRATAÇÕES DIRETAS (LEI Nº 14.133/2021)', bold: true, size: 21, font: 'Open Sans', color: '000000' })]
+          }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 220 },
+            children: [new TextRun({ text: `Modelo AGU (${versaoAgu}) — ${obterDescricaoModalidade()}`, italics: true, size: 18, font: 'Open Sans', color: '525252' })]
+          }),
+
+          // Tabela de Identificação do Processo
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [
+              new TableRow({
+                children: [
+                  new TableCell({
+                    width: { size: 22, type: WidthType.PERCENTAGE },
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Processo / SUAP:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    width: { size: 38, type: WidthType.PERCENTAGE },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [processoDocxRun] })]
+                  }),
+                  new TableCell({
+                    width: { size: 15, type: WidthType.PERCENTAGE },
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Data:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    width: { size: 25, type: WidthType.PERCENTAGE },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: dataFormatada, size: 18, font: 'Open Sans' })] })]
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Modalidade:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: obterDescricaoModalidade(), size: 18, font: 'Open Sans' })] })]
+                  }),
+                  new TableCell({
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Natureza:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: obterDescricaoObjeto(), size: 18, font: 'Open Sans' })] })]
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Objeto:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    columnSpan: 3,
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: objeto, size: 18, font: 'Open Sans' })] })]
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Responsável:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: responsavel, size: 18, font: 'Open Sans' })] })]
+                  }),
+                  new TableCell({
+                    shading: { type: ShadingType.CLEAR, fill: 'EEF8F0' },
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: 'Modelo AGU:', bold: true, size: 18, font: 'Open Sans', color: '165220' })] })]
+                  }),
+                  new TableCell({
+                    borders: bordaPadrao,
+                    children: [new Paragraph({ children: [new TextRun({ text: versaoAgu, size: 18, font: 'Open Sans' })] })]
+                  })
+                ]
+              })
+            ]
+          })
+        ];
+
+        // Adiciona cada Lista de Verificação ativa como uma tabela formatada
+        const secoesAtivas = getSecoesAtivas();
+        secoesAtivas.forEach((secao) => {
+          children.push(new Paragraph({ text: '', spacing: { before: 200, after: 80 } }));
+
+          const headerRow = new TableRow({
+            tableHeader: true,
+            children: [
+              new TableCell({
+                columnSpan: 2,
+                width: { size: 62, type: WidthType.PERCENTAGE },
+                shading: { type: ShadingType.CLEAR, fill: '2F9E41' },
+                borders: bordaPadrao,
+                verticalAlign: VerticalAlign.CENTER,
+                children: [
+                  new Paragraph({
+                    spacing: { before: 60, after: 60 },
+                    children: [new TextRun({ text: secao.titulo, bold: true, size: 17, font: 'Open Sans', color: 'FFFFFF' })]
+                  })
+                ]
+              }),
+              new TableCell({
+                width: { size: 16, type: WidthType.PERCENTAGE },
+                shading: { type: ShadingType.CLEAR, fill: '2F9E41' },
+                borders: bordaPadrao,
+                verticalAlign: VerticalAlign.CENTER,
+                children: [
+                  new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { before: 60, after: 60 },
+                    children: [new TextRun({ text: 'Atende plenamente a exigência?', bold: true, size: 16, font: 'Open Sans', color: 'FFFFFF' })]
+                  })
+                ]
+              }),
+              new TableCell({
+                width: { size: 22, type: WidthType.PERCENTAGE },
+                shading: { type: ShadingType.CLEAR, fill: '2F9E41' },
+                borders: bordaPadrao,
+                verticalAlign: VerticalAlign.CENTER,
+                children: [
+                  new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { before: 60, after: 60 },
+                    children: [new TextRun({ text: 'Indicação no processo (doc. / fls. / SUAP)', bold: true, size: 16, font: 'Open Sans', color: 'FFFFFF' })]
+                  })
+                ]
+              })
+            ]
+          });
+
+          const itemRows = secao.itens.map((item, idx) => {
+            const dado = appState.respostas[item.id] || { resposta: '', local: '' };
+            const resp = dado.resposta || 'Pendente';
+            const local = dado.local?.trim() || '—';
+
+            let corResp = '92400E';
+            if (resp === 'Sim') corResp = '237A31';
+            else if (resp === 'Não') corResp = 'CD191E';
+            else if (resp === 'Não se aplica') corResp = '525252';
+
+            return new TableRow({
+              cantSplit: true,
+              children: [
+                new TableCell({
+                  width: { size: 6, type: WidthType.PERCENTAGE },
+                  borders: bordaPadrao,
+                  verticalAlign: VerticalAlign.CENTER,
+                  children: [
+                    new Paragraph({
+                      alignment: AlignmentType.CENTER,
+                      children: [new TextRun({ text: String(idx + 1), size: 17, font: 'Open Sans', color: '404040' })]
+                    })
+                  ]
+                }),
+                new TableCell({
+                  width: { size: 56, type: WidthType.PERCENTAGE },
+                  borders: bordaPadrao,
+                  verticalAlign: VerticalAlign.CENTER,
+                  children: [
+                    new Paragraph({
+                      spacing: { before: 40, after: 40 },
+                      children: [new TextRun({ text: item.texto, size: 17, font: 'Open Sans', color: '171717' })]
+                    })
+                  ]
+                }),
+                new TableCell({
+                  width: { size: 16, type: WidthType.PERCENTAGE },
+                  borders: bordaPadrao,
+                  verticalAlign: VerticalAlign.CENTER,
+                  children: [
+                    new Paragraph({
+                      alignment: AlignmentType.CENTER,
+                      children: [new TextRun({ text: resp, bold: true, size: 17, font: 'Open Sans', color: corResp })]
+                    })
+                  ]
+                }),
+                new TableCell({
+                  width: { size: 22, type: WidthType.PERCENTAGE },
+                  borders: bordaPadrao,
+                  verticalAlign: VerticalAlign.CENTER,
+                  children: [
+                    new Paragraph({
+                      children: [new TextRun({ text: local, size: 17, font: 'Open Sans', color: '262626' })]
+                    })
+                  ]
+                })
+              ]
+            });
+          });
+
+          children.push(
+            new Table({
+              width: { size: 100, type: WidthType.PERCENTAGE },
+              rows: [headerRow, ...itemRows]
+            })
+          );
+        });
+
+        // Bloco de Assinatura no final do DOCX
+        children.push(
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { before: 400, after: 360 },
+            children: [new TextRun({ text: `Data da verificação: ${dataFormatada}`, size: 18, font: 'Open Sans' })]
+          }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 40 },
+            children: [new TextRun({ text: '______________________________________________', size: 18, font: 'Open Sans' })]
+          }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 20 },
+            children: [new TextRun({ text: responsavel, bold: true, size: 18, font: 'Open Sans' })]
+          }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            children: [new TextRun({ text: 'Agente Público Responsável pela Verificação — IFMA', size: 16, font: 'Open Sans', color: '525252' })]
+          })
+        );
+
+        const doc = new Document({
+          sections: [
+            {
+              properties: {
+                page: {
+                  margin: { top: 850, right: 850, bottom: 850, left: 850 }
+                }
+              },
+              children
+            }
+          ]
+        });
+
+        const blob = await Packer.toBlob(doc);
+        const url = URL.createObjectURL(blob);
+        const nomeArquivo = `${nomeBase}.docx`;
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = nomeArquivo;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        mostrarToast(`DOCX "${nomeArquivo}" baixado com sucesso!`, 'sucesso');
+      } catch (err) {
+        console.error('Erro ao gerar DOCX:', err);
+        mostrarToast('Ocorreu um erro ao gerar o arquivo DOCX.', 'erro');
+      }
+    }
+
+    /**
+     * =========================================================================
+     * 7. EVENT LISTENERS E INICIALIZAÇÃO
+     * =========================================================================
+     */
+    function inicializarEventos() {
+      // Seleção de Modalidade (Dispensa ou Inexigibilidade)
+      document.getElementById('selector-modalidade').addEventListener('click', (e) => {
+        const btn = e.target.closest('.modalidade-btn');
+        if (!btn) return;
+        const novaModalidade = btn.getAttribute('data-modalidade');
+        if (appState.modalidade !== novaModalidade) {
+          appState.modalidade = novaModalidade;
+          salvarLocalStorage();
+          renderizarTudo();
+          const nome = novaModalidade === 'dispensa' ? 'Dispensa de Licitação (Lista 2B)' : 'Inexigibilidade (Lista 2A)';
+          mostrarToast(`Lista adaptada para ${nome}.`, 'info');
+        }
+      });
+
+      // Seleção de Natureza do Objeto (Lista 3A / 3B)
+      document.getElementById('selector-objeto').addEventListener('click', (e) => {
+        const btn = e.target.closest('.objeto-btn');
+        if (!btn) return;
+        const novoObjeto = btn.getAttribute('data-objeto');
+        if (appState.tipoObjeto !== novoObjeto) {
+          appState.tipoObjeto = novoObjeto;
+          salvarLocalStorage();
+          renderizarTudo();
+        }
+      });
+
+      // Metadados (atualização em tempo real)
+      const camposMeta = [
+        ['meta-orgao', 'orgao'],
+        ['meta-processo', 'processo'],
+        ['meta-link-processo', 'linkProcesso'],
+        ['meta-objeto', 'objeto'],
+        ['meta-versao-agu', 'versaoAgu'],
+        ['meta-responsavel', 'responsavel'],
+        ['meta-data', 'data']
+      ];
+      camposMeta.forEach(([elId, chave]) => {
+        document.getElementById(elId).addEventListener('input', (e) => {
+          appState.metadados[chave] = e.target.value;
+          atualizarCabecalhoImpressao();
+          salvarLocalStorage();
+        });
+      });
+
+      // Delegação de eventos no container da checklist (Cliques de Resposta e Inputs de Local)
+      const checklistContainer = document.getElementById('checklist-container');
+
+      checklistContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.resp-btn');
+        if (!btn) return;
+        const itemId = btn.getAttribute('data-item-id');
+        const opcao = btn.getAttribute('data-opcao');
+
+        if (!appState.respostas[itemId]) {
+          appState.respostas[itemId] = { resposta: '', local: '' };
+        }
+
+        // Clicar na mesma opção já selecionada permite desmarcar (voltar para Pendente)
+        appState.respostas[itemId].resposta = appState.respostas[itemId].resposta === opcao ? '' : opcao;
+        salvarLocalStorage();
+        renderizarChecklist();
+      });
+
+      checklistContainer.addEventListener('input', (e) => {
+        if (!e.target.classList.contains('local-input')) return;
+        const itemId = e.target.getAttribute('data-local-id');
+        if (!appState.respostas[itemId]) {
+          appState.respostas[itemId] = { resposta: '', local: '' };
+        }
+        appState.respostas[itemId].local = e.target.value;
+        salvarLocalStorage();
+      });
+
+      // Busca e Filtros
+      document.getElementById('input-busca').addEventListener('input', (e) => {
+        termoBusca = e.target.value;
+        renderizarChecklist();
+      });
+
+      document.getElementById('filtro-status-group').addEventListener('click', (e) => {
+        const btn = e.target.closest('.filtro-btn');
+        if (!btn) return;
+        filtroStatus = btn.getAttribute('data-filtro');
+        renderizarSeletores();
+        renderizarChecklist();
+      });
+
+      // Botão Exportar JSON
+      document.getElementById('btn-exportar').addEventListener('click', exportarJSON);
+
+      // Botão Preview e Exportações PDF / DOCX
+      document.getElementById('btn-preview').addEventListener('click', abrirPreview);
+      document.getElementById('btn-preview-fechar').addEventListener('click', fecharPreview);
+      document.getElementById('btn-exportar-pdf').addEventListener('click', exportarPDF);
+      document.getElementById('btn-preview-pdf').addEventListener('click', exportarPDF);
+      document.getElementById('btn-exportar-docx').addEventListener('click', exportarDOCX);
+      document.getElementById('btn-preview-docx').addEventListener('click', exportarDOCX);
+
+      // Fechar Preview clicando fora da folha ou pressionando ESC
+      document.getElementById('preview-scroll-area').addEventListener('click', (e) => {
+        if (e.target.id === 'preview-scroll-area') fecharPreview();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') fecharPreview();
+      });
+
+      // Botão Importar JSON
+      const inputImport = document.getElementById('input-importar-json');
+      document.getElementById('btn-importar').addEventListener('click', () => {
+        inputImport.value = ''; // Permite reimportar o mesmo arquivo
+        inputImport.click();
+      });
+      inputImport.addEventListener('change', (e) => {
+        const arquivo = e.target.files?.[0];
+        if (arquivo) importarJSON(arquivo);
+      });
+
+      // Modal de Confirmação para Limpar Dados
+      const modalConfirm = document.getElementById('modal-confirm');
+      const abrirModal = () => {
+        modalConfirm.classList.remove('hidden');
+        modalConfirm.classList.add('flex');
+      };
+      const fecharModal = () => {
+        modalConfirm.classList.add('hidden');
+        modalConfirm.classList.remove('flex');
+      };
+
+      document.getElementById('btn-limpar').addEventListener('click', abrirModal);
+      document.getElementById('modal-cancel').addEventListener('click', fecharModal);
+      modalConfirm.addEventListener('click', (e) => {
+        if (e.target === modalConfirm) fecharModal();
+      });
+      document.getElementById('modal-confirm-btn').addEventListener('click', () => {
+        appState = createInitialState();
+        filtroStatus = 'todos';
+        termoBusca = '';
+        document.getElementById('input-busca').value = '';
+        localStorage.removeItem(STORAGE_KEY);
+        fecharModal();
+        renderizarTudo();
+        mostrarToast('Formulário limpo com sucesso.', 'info');
+      });
+    }
+
+    // Boot da aplicação
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarLocalStorage();
+      inicializarEventos();
+      renderizarTudo();
+    });
+  </script>
+</body>
+</html>
