@@ -15,6 +15,8 @@
   <!-- Bibliotecas para exportação em PDF e DOCX -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+  <!-- Biblioteca para leitura de arquivos .docx (upload do modelo da AGU) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -131,6 +133,19 @@
 
         <!-- Botões de Ação -->
         <div class="flex flex-wrap items-center gap-2">
+          <!-- Botão Upload da Lista de Verificação (abre modal da versão da AGU) -->
+          <button
+            id="btn-abrir-modelo"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white shadow-xs transition cursor-pointer"
+            title="Enviar/atualizar a lista de verificação conforme a versão da AGU"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            <span>Upload lista de verificação</span>
+          </button>
+
           <!-- Botão Importar JSON -->
           <button
             id="btn-importar"
@@ -336,6 +351,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- 2. CONFIGURAÇÃO DINÂMICA DA LISTA (DISPENSA vs INEXIGIBILIDADE + OBJETO) -->
     <section class="bg-white rounded-2xl shadow-xs border border-neutral-200 p-5 sm:p-6 no-print">
@@ -584,6 +600,113 @@
   </div>
 
   <!-- =====================================================================
+       MODAL: ATUALIZAR A VERSÃO DA AGU (OPÇÕES DO MODELO)
+  ====================================================================== -->
+  <div id="modal-modelo" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/50 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-neutral-200">
+      <!-- Cabeçalho do Modal -->
+      <div class="flex items-start justify-between gap-3 p-5 sm:p-6 border-b border-neutral-100">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-ifma-blue-light text-ifma-blue flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-neutral-900">Atualizar a versão da AGU</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">Mantenha a lista de verificação alinhada ao modelo oficial mais recente.</p>
+          </div>
+        </div>
+        <button id="btn-modelo-fechar" type="button" class="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition cursor-pointer" aria-label="Fechar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-5">
+        <!-- Modelo atual -->
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <span class="font-bold text-neutral-500 uppercase tracking-wider">Modelo atual:</span>
+          <span id="modelo-indicador-modal" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-semibold border bg-ifma-blue-light text-ifma-blue border-ifma-blue/30"></span>
+        </div>
+
+        <!-- Passo 1: Atualizar -->
+        <div class="rounded-xl border border-ifma-green/30 bg-ifma-green-light/40 p-4">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-6 h-6 rounded-full bg-ifma-green text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+            <h4 class="text-sm font-bold text-neutral-900">Carregar a versão mais recente</h4>
+          </div>
+          <p class="text-xs text-neutral-600 leading-relaxed mb-3">
+            Baixe o modelo <strong>.docx</strong> no site oficial da AGU e carregue aqui. O sistema lê o Word,
+            reconstrói as listas e se adapta às mudanças — <strong>as respostas já preenchidas são preservadas</strong>.
+            Também aceita arquivos <strong>.md</strong> e <strong>.json</strong>.
+          </p>
+          <button
+            id="btn-atualizar-modelo"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold bg-ifma-green hover:bg-ifma-green-dark text-white shadow-xs transition cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            <span>Selecionar arquivo (.docx / .md / .json)</span>
+          </button>
+          <input id="input-modelo-json" type="file" accept=".docx,.md,.markdown,.txt,.json,application/json,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden" />
+        </div>
+
+        <!-- Passo 2: Baixar modelo editável -->
+        <div class="rounded-xl border border-neutral-200 p-4">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-6 h-6 rounded-full bg-ifma-blue text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+            <h4 class="text-sm font-bold text-neutral-900">Baixar o modelo atual (opcional)</h4>
+          </div>
+          <p class="text-xs text-neutral-600 leading-relaxed mb-3">
+            Útil para conferir ou editar manualmente o modelo em vigor antes de recarregar.
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              id="btn-baixar-md"
+              type="button"
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              <span>Baixar (.md)</span>
+            </button>
+            <button
+              id="btn-baixar-modelo"
+              type="button"
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              <span>Baixar (.json)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Restaurar padrão -->
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <p class="text-xs text-neutral-500">Precisa voltar ao modelo embutido no sistema?</p>
+          <button
+            id="btn-restaurar-modelo"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-neutral-100 text-neutral-700 border border-neutral-300 transition cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            <span>Restaurar padrão</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
        MODAL DE CONFIRMAÇÃO (SUBSTITUI confirm() NATIVO)
   ====================================================================== -->
   <div id="modal-confirm" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/50 backdrop-blur-xs p-4 no-print">
@@ -626,13 +749,13 @@
      * 1. DEFINIÇÃO OFICIAL DAS LISTAS DE VERIFICAÇÃO (AGU - LEI 14.133/2021)
      * =========================================================================
      */
-    const CHECKLIST_SCHEMA = [
+    const SCHEMA_PADRAO = [
       {
         id: 'L1',
         codigo: 'Lista 1',
         titulo: 'LISTA DE VERIFICAÇÃO 1 - VERIFICAÇÃO COMUM A TODAS AS CONTRATAÇÕES DIRETAS',
         badgeColor: 'bg-ifma-green-light text-ifma-green-darker border-ifma-green/35',
-        condicao: (state) => state.modalidade !== null,
+        regra: { requerModalidade: true },
         itens: [
           { id: 'L1_01', texto: 'Houve abertura de processo administrativo?' },
           { id: 'L1_02', texto: 'Foi adotada a forma eletrônica para o processo administrativo ou, caso adotada forma em papel, houve a devida justificativa?' },
@@ -665,7 +788,7 @@
         codigo: 'Lista 2A',
         titulo: 'LISTA DE VERIFICAÇÃO 2A - VERIFICAÇÃO ESPECÍFICA E EXCLUSIVA PARA CONTRATAÇÃO POR INEXIGIBILIDADE',
         badgeColor: 'bg-ifma-blue-light text-ifma-blue border-ifma-blue/30',
-        condicao: (state) => state.modalidade === 'inexigibilidade',
+        regra: { modalidade: 'inexigibilidade' },
         itens: [
           { id: 'L2A_01', texto: 'Consta manifestação técnica demonstrando a inviabilidade de competição?' },
           { id: 'L2A_02', texto: 'Houve justificativa do preço com base no regulamento pertinente?' },
@@ -681,7 +804,7 @@
         codigo: 'Lista 2B',
         titulo: 'LISTA DE VERIFICAÇÃO 2B – VERIFICAÇÃO ESPECÍFICA E EXCLUSIVA PARA CONTRATAÇÃO POR DISPENSA',
         badgeColor: 'bg-ifma-green-light text-ifma-green-dark border-ifma-green/40',
-        condicao: (state) => state.modalidade === 'dispensa',
+        regra: { modalidade: 'dispensa' },
         itens: [
           { id: 'L2B_01', texto: 'Consta manifestação técnica justificando o enquadramento da contratação expressamente nas hipóteses do art. 75 da Lei 14133/21?' },
           { id: 'L2B_02', texto: 'Consta justificativa do preço baseada em pesquisa ou certificação de que a estimativa ocorrerá concomitantemente com a seleção da proposta mais vantajosa, tudo em conformidade com a Instrução Normativa nº 65/2021?' },
@@ -697,7 +820,7 @@
         codigo: 'Lista 3A',
         titulo: 'LISTA DE VERIFICAÇÃO 3A - VERIFICAÇÃO ESPECÍFICA PARA AQUISIÇÕES POR INEXIGIBILIDADE OU POR DISPENSA DE LICITAÇÃO',
         badgeColor: 'bg-ifma-red-light text-ifma-red border-ifma-red/30',
-        condicao: (state) => state.modalidade !== null && (state.tipoObjeto === 'aquisicao' || state.tipoObjeto === 'ambos'),
+        regra: { requerModalidade: true, tipoObjeto: ['aquisicao', 'ambos'] },
         itens: [
           { id: 'L3A_01', texto: 'Há justificativa para não utilização de sistema de registro de preços?' },
           { id: 'L3A_02', texto: 'Há manifestação sobre o atendimento do princípio da padronização?' },
@@ -712,7 +835,7 @@
         codigo: 'Lista 3B',
         titulo: 'LISTA DE VERIFICAÇÃO 3B - VERIFICAÇÃO ESPECÍFICA PARA CONTRATAÇÃO DE SERVIÇOS EM GERAL POR INEXIGIBILIDADE OU POR DISPENSA DE LICITAÇÃO',
         badgeColor: 'bg-neutral-100 text-neutral-800 border-neutral-300',
-        condicao: (state) => state.modalidade !== null && (state.tipoObjeto === 'servicos' || state.tipoObjeto === 'ambos'),
+        regra: { requerModalidade: true, tipoObjeto: ['servicos', 'ambos'] },
         itens: [
           { id: 'L3B_01', texto: 'Houve manifestação quanto à observância do princípio da padronização?' },
           { id: 'L3B_02', texto: 'Consta informação do uso ou justificativa para não utilização de catálogo eletrônico de padronização?' },
@@ -723,7 +846,19 @@
     ];
 
     const STORAGE_KEY = 'lista_verificacao_14133_state_v1';
+    const SCHEMA_STORAGE_KEY = 'lista_verificacao_14133_schema_v1';
     const OPCOES_RESPOSTA = ['Sim', 'Não', 'Não se aplica'];
+
+    /**
+     * Modelo ativo (estrutura das listas/itens). Inicia com o modelo padrão da AGU,
+     * mas pode ser substituído por um arquivo de modelo carregado pelo usuário.
+     */
+    let CHECKLIST_SCHEMA = SCHEMA_PADRAO;
+    let schemaMeta = {
+      origem: 'padrao',
+      versaoModelo: 'Padrão AGU (Set/2024)',
+      atualizadoEm: null
+    };
 
     /**
      * =========================================================================
@@ -795,6 +930,503 @@
 
     /**
      * =========================================================================
+     * 3.5. MODELO DINÂMICO DA LISTA DE VERIFICAÇÃO (SCHEMA EDITÁVEL POR ARQUIVO)
+     * =========================================================================
+     * Permite baixar a estrutura das listas, editá-la conforme atualizações da
+     * AGU e recarregá-la, sem perder as respostas já preenchidas.
+     */
+
+    /** Normaliza/valida a "regra" de exibição de uma seção vinda de arquivo */
+    function sanitizarRegra(regra) {
+      if (!regra || typeof regra !== 'object') return { requerModalidade: true };
+      const out = {};
+      if (regra.sempre === true) out.sempre = true;
+      if (regra.requerModalidade === true) out.requerModalidade = true;
+      if (regra.modalidade) out.modalidade = regra.modalidade;
+      if (regra.tipoObjeto) out.tipoObjeto = regra.tipoObjeto;
+      if (Object.keys(out).length === 0) out.requerModalidade = true;
+      return out;
+    }
+
+    /**
+     * Valida e normaliza um modelo (schema) carregado de arquivo.
+     * Aceita tanto um array de seções quanto um objeto { listas: [...] }.
+     * Lança Error com mensagem amigável em caso de problema.
+     */
+    function validarSchema(dados) {
+      const arr = Array.isArray(dados) ? dados : (dados && Array.isArray(dados.listas) ? dados.listas : null);
+      if (!arr || arr.length === 0) {
+        throw new Error('O arquivo não contém uma lista de seções válida ("listas").');
+      }
+      const badgePadrao = 'bg-ifma-green-light text-ifma-green-darker border-ifma-green/35';
+
+      const normalizadas = arr.map((secao, i) => {
+        if (!secao || typeof secao !== 'object') {
+          throw new Error(`A seção nº ${i + 1} é inválida.`);
+        }
+        const id = String(secao.id || `L${i + 1}`).trim();
+        const codigo = String(secao.codigo || id).trim();
+        const titulo = String(secao.titulo || codigo).trim();
+
+        if (!Array.isArray(secao.itens) || secao.itens.length === 0) {
+          throw new Error(`A seção "${codigo}" não possui itens.`);
+        }
+
+        const itens = secao.itens.map((it, j) => {
+          if (!it || typeof it !== 'object') {
+            throw new Error(`Item nº ${j + 1} da seção "${codigo}" é inválido.`);
+          }
+          const itId = String(it.id || `${id}_${String(j + 1).padStart(2, '0')}`).trim();
+          const texto = String(it.texto || '').trim();
+          if (!texto) {
+            throw new Error(`O item nº ${j + 1} da seção "${codigo}" está sem texto.`);
+          }
+          return { id: itId, texto };
+        });
+
+        const badgeColor = typeof secao.badgeColor === 'string' && secao.badgeColor.trim()
+          ? secao.badgeColor.trim()
+          : badgePadrao;
+
+        return { id, codigo, titulo, badgeColor, regra: sanitizarRegra(secao.regra), itens };
+      });
+
+      const idsSecao = normalizadas.map((s) => s.id);
+      if (new Set(idsSecao).size !== idsSecao.length) {
+        throw new Error('Há seções com IDs duplicados. Cada lista precisa de um "id" único.');
+      }
+      const idsItem = normalizadas.flatMap((s) => s.itens.map((it) => it.id));
+      if (new Set(idsItem).size !== idsItem.length) {
+        throw new Error('Há itens com IDs duplicados. Cada item precisa de um "id" único.');
+      }
+
+      return normalizadas;
+    }
+
+    function salvarSchemaLocal() {
+      try {
+        localStorage.setItem(SCHEMA_STORAGE_KEY, JSON.stringify({ meta: schemaMeta, listas: CHECKLIST_SCHEMA }));
+      } catch (e) {
+        console.warn('Não foi possível salvar o modelo no navegador:', e);
+      }
+    }
+
+    function carregarSchemaLocal() {
+      try {
+        const saved = localStorage.getItem(SCHEMA_STORAGE_KEY);
+        if (!saved) return;
+        const parsed = JSON.parse(saved);
+        const validado = validarSchema(parsed.listas ?? parsed);
+        CHECKLIST_SCHEMA = validado;
+        schemaMeta = {
+          origem: 'personalizado',
+          versaoModelo: parsed.meta?.versaoModelo || 'Modelo personalizado',
+          atualizadoEm: parsed.meta?.atualizadoEm || null
+        };
+      } catch (e) {
+        console.warn('Modelo personalizado inválido no navegador. Usando o padrão.', e);
+      }
+    }
+
+    function exportarSchema() {
+      try {
+        const payload = {
+          tipo: 'modelo-lista-verificacao-14133',
+          _comoEditar: {
+            sobre: 'Este arquivo define a ESTRUTURA das listas (não as respostas). Edite "listas" e "itens" conforme a versão publicada pela AGU e recarregue no sistema pelo botão "Atualizar modelo".',
+            item: 'Cada item precisa de um "id" único e de um "texto". Para adicionar um item, copie um bloco existente e altere id/texto.',
+            regra: 'Em cada lista, "regra" define quando ela aparece: { "requerModalidade": true } = em qualquer contratação direta; { "modalidade": "dispensa" } ou "inexigibilidade" = restringe por modalidade; { "tipoObjeto": ["aquisicao","servicos","ambos"] } = restringe por natureza do objeto; { "sempre": true } = aparece sempre.'
+          },
+          meta: {
+            versaoModelo: schemaMeta.versaoModelo || 'Modelo personalizado',
+            origem: schemaMeta.origem,
+            exportadoEm: new Date().toISOString()
+          },
+          listas: CHECKLIST_SCHEMA.map((s) => ({
+            id: s.id,
+            codigo: s.codigo,
+            titulo: s.titulo,
+            badgeColor: s.badgeColor,
+            regra: s.regra,
+            itens: s.itens.map((it) => ({ id: it.id, texto: it.texto }))
+          }))
+        };
+
+        const jsonStr = JSON.stringify(payload, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const dataStr = new Date().toISOString().split('T')[0];
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `modelo-lista-verificacao-14133-${dataStr}.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        mostrarToast('Modelo editável exportado. Ajuste os itens e recarregue quando a AGU atualizar.', 'sucesso');
+      } catch (err) {
+        console.error('Erro ao exportar modelo:', err);
+        mostrarToast('Não foi possível exportar o modelo.', 'erro');
+      }
+    }
+
+    /** Remove acentos e coloca em caixa alta, para comparação de palavras-chave */
+    function normalizarTexto(s) {
+      return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+    }
+
+    /**
+     * Infere a regra de exibição de uma lista a partir do seu título, usando
+     * as mesmas palavras que a AGU emprega nos títulos oficiais.
+     */
+    function inferirRegraPorTitulo(titulo) {
+      const t = normalizarTexto(titulo);
+      const temAquis = t.includes('AQUISI');
+      const temServ = t.includes('SERVIC');
+      // Listas específicas por natureza do objeto (3A / 3B) — valem nas duas modalidades
+      if (temAquis || temServ) {
+        const tipos = [];
+        if (temAquis) tipos.push('aquisicao');
+        if (temServ) tipos.push('servicos');
+        tipos.push('ambos');
+        return { requerModalidade: true, tipoObjeto: tipos };
+      }
+      const temInexig = t.includes('INEXIG');
+      const temDispensa = t.includes('DISPENSA');
+      if (temInexig && !temDispensa) return { modalidade: 'inexigibilidade' };
+      if (temDispensa && !temInexig) return { modalidade: 'dispensa' };
+      // Comum a todas as contratações diretas (Lista 1)
+      return { requerModalidade: true };
+    }
+
+    /** Converte uma anotação explícita {regra: ...} escrita no título em objeto de regra */
+    function traduzirRegraTexto(txt) {
+      const t = (txt || '').toLowerCase();
+      if (t.includes('sempre')) return { sempre: true };
+      if (t.includes('inexig')) return { modalidade: 'inexigibilidade' };
+      if (t.includes('dispensa')) return { modalidade: 'dispensa' };
+      if (t.includes('aquisi') || t.includes('serv') || t.includes('objeto')) {
+        const tipos = [];
+        if (t.includes('aquisi')) tipos.push('aquisicao');
+        if (t.includes('serv')) tipos.push('servicos');
+        if (tipos.length === 0) tipos.push('aquisicao', 'servicos');
+        tipos.push('ambos');
+        return { requerModalidade: true, tipoObjeto: tipos };
+      }
+      return { requerModalidade: true };
+    }
+
+    /** Deriva código ("Lista 2A") e id ("L2A") a partir do título de um cabeçalho */
+    function derivarCodigoId(heading, index, usados) {
+      const t = normalizarTexto(heading);
+      const m = t.match(/(?:LISTA|VERIFICA\S*)\s*(?:N[º°O.\s]*)?(\d+[A-Z]?)/);
+      const num = m ? m[1] : String(index + 1);
+      const codigo = 'Lista ' + num;
+      let base = ('L' + num).replace(/[^A-Z0-9]/gi, '');
+      if (!base) base = 'L' + (index + 1);
+      let id = base, n = 2;
+      while (usados.has(id)) { id = base + '_' + n; n++; }
+      usados.add(id);
+      return { codigo, id };
+    }
+
+    /** Limpa marcações inline do Markdown (negrito, tags HTML, notas de rodapé, crases) */
+    function limparInline(s) {
+      return String(s)
+        .replace(/\[\^[^\]]*\]/g, '')      // referências de nota de rodapé [^2]
+        .replace(/<\/?[a-z][^>]*>/gi, '')  // tags HTML como <u> </u>
+        .replace(/\*\*/g, '')               // negrito **
+        .replace(/__/g, '')                 // negrito __
+        .replace(/`+/g, '')                 // crases
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    /**
+     * Converte o Markdown do modelo em estrutura de listas. Entende DOIS formatos:
+     *
+     *  (A) Formato limpo (gerado por "Baixar (.md)"):
+     *      "## Título da Lista"           -> inicia uma nova lista
+     *      "1. ..." / "- ..."             -> itens
+     *      "## Título {regra: dispensa}"  -> força a regra (opcional)
+     *
+     *  (B) Formato de TABELAS (ex.: conversão do .docx da AGU via pandoc):
+     *      a célula que contém "LISTA DE VERIFICAÇÃO ..." inicia uma nova lista;
+     *      cada linha seguinte da tabela vira um item (ignorando "Resposta",
+     *      cabeçalhos de coluna e separadores). Negrito, <u> e notas [^n] são removidos.
+     *
+     *  "<!-- versao: X -->" define a versão do modelo (opcional, em qualquer formato).
+     */
+    function parseMarkdownSchema(md) {
+      const linhas = String(md).replace(/\r\n?/g, '\n').split('\n');
+      const secoes = [];
+      const usados = new Set();
+      let atual = null;
+      let metaVersao = null;
+      let idx = 0;
+
+      const reH2 = /^\s{0,3}#{2,3}\s+(.*\S)\s*$/;
+      const reItem = /^\s*(?:\d+[.)]|[-*+])\s+(.*\S)\s*$/;
+      const reVersao = /<!--\s*vers[aã]o\s*:\s*(.+?)\s*-->/i;
+      const reTituloLista = /lista\s+de\s+verifica/i;
+
+      const iniciarSecao = (titulo) => {
+        const { codigo, id } = derivarCodigoId(titulo, idx, usados);
+        atual = { id, codigo, titulo, regra: inferirRegraPorTitulo(titulo), itens: [] };
+        secoes.push(atual);
+        idx++;
+      };
+
+      for (const raw of linhas) {
+        const mVersao = raw.match(reVersao);
+        if (mVersao && !metaVersao) metaVersao = mVersao[1].trim();
+
+        // (A) Cabeçalho "## ..."
+        const mH2 = raw.match(reH2);
+        if (mH2) {
+          let heading = mH2[1].trim();
+          let regra = null;
+          const mAnot = heading.match(/\{\s*regra\s*:\s*([^}]+)\}/i);
+          if (mAnot) {
+            regra = traduzirRegraTexto(mAnot[1]);
+            heading = heading.replace(mAnot[0], '').trim();
+          }
+          heading = limparInline(heading);
+          const { codigo, id } = derivarCodigoId(heading, idx, usados);
+          atual = { id, codigo, titulo: heading, regra: regra || inferirRegraPorTitulo(heading), itens: [] };
+          secoes.push(atual);
+          idx++;
+          continue;
+        }
+
+        // (B) Linha de tabela Markdown "| ... | ... |"
+        if (/^\s*\|.*\|\s*$/.test(raw)) {
+          const cells = raw.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => limparInline(c));
+          if (cells.every((c) => c === '' || /^:?-{2,}:?$/.test(c))) continue; // linha separadora
+
+          // Célula de título inicia uma nova lista
+          const tituloCell = cells.find((c) => reTituloLista.test(c));
+          if (tituloCell) { iniciarSecao(tituloCell); continue; }
+
+          if (!atual) continue;
+
+          // Ignora a linha de cabeçalho das colunas
+          const norm = normalizarTexto(cells.join(' '));
+          if (norm.includes('ATENDE PLENAMENTE') || norm.includes('ITEM DE VERIFIC') || norm.includes('INDICACAO DO LOCAL') || norm.includes('INDICACAO NO PROCESSO')) continue;
+
+          // Item = maior célula que não seja número, "Resposta" ou vazia
+          const candidatos = cells.filter((c) => c && c.toLowerCase() !== 'resposta' && !/^\d+$/.test(c));
+          const texto = candidatos.reduce((a, b) => (b.length > a.length ? b : a), '');
+          if (texto && texto.length > 3) atual.itens.push({ texto });
+          continue;
+        }
+
+        // (A) Itens em lista "1." / "-"
+        if (!atual) continue;
+        const mItem = raw.match(reItem);
+        if (mItem) {
+          const texto = limparInline(mItem[1]);
+          if (texto) atual.itens.push({ texto });
+          continue;
+        }
+      }
+
+      const comItens = secoes.filter((s) => s.itens.length > 0);
+      if (comItens.length === 0) {
+        throw new Error('Nenhuma lista com itens encontrada. Use "## Nome da Lista" com itens numerados, ou uma tabela cujo título contenha "Lista de Verificação".');
+      }
+      return { meta: metaVersao ? { versaoModelo: metaVersao } : null, listas: comItens };
+    }
+
+    /**
+     * Lê um arquivo .docx (modelo oficial da AGU) diretamente no navegador e
+     * extrai as listas de verificação. O .docx é um ZIP; usamos JSZip para abrir
+     * e o DOMParser para ler o XML (word/document.xml). Cada tabela cujo título
+     * contenha "Lista de Verificação" vira uma seção; cada linha seguinte, um item.
+     */
+    async function parseDocxSchema(arrayBuffer) {
+      if (typeof JSZip === 'undefined') {
+        throw new Error('Biblioteca de leitura .docx indisponível (sem internet). Use um arquivo .md ou reconecte-se.');
+      }
+      const zip = await JSZip.loadAsync(arrayBuffer);
+      const docFile = zip.file('word/document.xml');
+      if (!docFile) throw new Error('Arquivo .docx inválido (word/document.xml não encontrado).');
+
+      const xml = await docFile.async('string');
+      const doc = new DOMParser().parseFromString(xml, 'application/xml');
+      if (doc.getElementsByTagName('parsererror').length) {
+        throw new Error('Não foi possível interpretar o XML do documento.');
+      }
+
+      const textoCelula = (tc) => {
+        const ts = tc.getElementsByTagName('w:t');
+        let s = '';
+        for (let i = 0; i < ts.length; i++) s += ts[i].textContent;
+        return s.replace(/\s+/g, ' ').trim();
+      };
+
+      const tabelas = doc.getElementsByTagName('w:tbl');
+      if (!tabelas.length) throw new Error('Nenhuma tabela encontrada no documento.');
+
+      const usados = new Set();
+      const listas = [];
+      let idx = 0;
+
+      for (let ti = 0; ti < tabelas.length; ti++) {
+        const linhas = tabelas[ti].getElementsByTagName('w:tr');
+        if (!linhas.length) continue;
+
+        const celsTitulo = linhas[0].getElementsByTagName('w:tc');
+        const titulo = celsTitulo.length ? textoCelula(celsTitulo[0]) : '';
+        if (!/lista\s+de\s+verifica/i.test(titulo)) continue; // ignora tabelas que não são listas
+
+        const { codigo, id } = derivarCodigoId(titulo, idx, usados);
+        const itens = [];
+        for (let ri = 1; ri < linhas.length; ri++) {
+          const cels = linhas[ri].getElementsByTagName('w:tc');
+          if (!cels.length) continue;
+          const q = textoCelula(cels[0]);
+          if (q && q.toLowerCase() !== 'resposta' && q.length > 3) itens.push({ texto: q });
+        }
+
+        if (itens.length) {
+          listas.push({ id, codigo, titulo, regra: inferirRegraPorTitulo(titulo), itens });
+          idx++;
+        }
+      }
+
+      if (!listas.length) throw new Error('Não encontrei listas de verificação neste .docx.');
+      return { meta: { versaoModelo: 'AGU (importado do .docx)' }, listas };
+    }
+
+    /** Aplica um modelo já interpretado (de .json ou .md), validando e preservando respostas */
+    function aplicarModelo(dados, origemLabel) {
+      const validado = validarSchema(dados);
+      CHECKLIST_SCHEMA = validado;
+      schemaMeta = {
+        origem: 'personalizado',
+        versaoModelo: dados.meta?.versaoModelo || 'Modelo personalizado',
+        atualizadoEm: new Date().toISOString()
+      };
+      salvarSchemaLocal();
+      renderizarTudo();
+
+      const totalListas = CHECKLIST_SCHEMA.length;
+      const totalItens = CHECKLIST_SCHEMA.reduce((a, s) => a + s.itens.length, 0);
+      mostrarToast(`Modelo atualizado (${origemLabel}): ${totalListas} listas e ${totalItens} itens. As respostas foram preservadas.`, 'sucesso');
+    }
+
+    /** Importa modelo de arquivo .docx (AGU), .md (Markdown) ou .json, detectando o formato */
+    function importarModelo(arquivo) {
+      if (!arquivo) return;
+      const nome = (arquivo.name || '').toLowerCase();
+      const reader = new FileReader();
+
+      // .docx — lido como binário e convertido no navegador
+      if (nome.endsWith('.docx')) {
+        reader.onload = async (e) => {
+          try {
+            const dados = await parseDocxSchema(e.target.result);
+            aplicarModelo(dados, 'DOCX da AGU');
+          } catch (err) {
+            console.error('Erro ao importar .docx:', err);
+            mostrarToast(`Falha ao ler o .docx: ${err.message}`, 'erro');
+          }
+        };
+        reader.onerror = () => mostrarToast('Não foi possível ler o arquivo .docx.', 'erro');
+        reader.readAsArrayBuffer(arquivo);
+        return;
+      }
+
+      // .md / .json — lidos como texto
+      const ehMarkdown = /\.(md|markdown|txt)$/.test(nome);
+      reader.onload = (e) => {
+        const conteudo = e.target.result;
+        try {
+          if (ehMarkdown) {
+            aplicarModelo(parseMarkdownSchema(conteudo), 'Markdown');
+          } else {
+            // Tenta JSON; se não for JSON válido, tenta interpretar como Markdown
+            try {
+              aplicarModelo(JSON.parse(conteudo), 'JSON');
+            } catch (_) {
+              aplicarModelo(parseMarkdownSchema(conteudo), 'Markdown');
+            }
+          }
+        } catch (err) {
+          console.error('Erro ao importar modelo:', err);
+          mostrarToast(`Falha ao carregar o modelo: ${err.message}`, 'erro');
+        }
+      };
+      reader.onerror = () => mostrarToast('Não foi possível ler o arquivo de modelo.', 'erro');
+      reader.readAsText(arquivo, 'UTF-8');
+    }
+
+    /** Exporta o modelo atual como Markdown editável (formato recomendado) */
+    function exportarMarkdown() {
+      try {
+        const linhas = [];
+        linhas.push('# Modelo da Lista de Verificação — Contratações Diretas (Lei nº 14.133/2021)');
+        linhas.push(`<!-- versao: ${schemaMeta.versaoModelo || 'Personalizado'} -->`);
+        linhas.push('');
+        linhas.push('> COMO EDITAR: cada "## Título da Lista" vira uma seção; cada linha numerada (1. 2. 3.) vira um item.');
+        linhas.push('> A aplicabilidade é inferida do título (palavras "Inexigibilidade", "Dispensa", "Aquisições", "Serviços", "comum a todas").');
+        linhas.push('> Para forçar manualmente, acrescente ao final do título: {regra: dispensa} | {regra: inexigibilidade} | {regra: aquisicao} | {regra: servicos} | {regra: sempre}');
+        linhas.push('');
+        CHECKLIST_SCHEMA.forEach((s) => {
+          linhas.push(`## ${s.titulo}`);
+          s.itens.forEach((it, i) => linhas.push(`${i + 1}. ${it.texto}`));
+          linhas.push('');
+        });
+
+        const blob = new Blob([linhas.join('\n')], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const dataStr = new Date().toISOString().split('T')[0];
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `modelo-lista-verificacao-14133-${dataStr}.md`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        mostrarToast('Modelo em Markdown exportado. Edite os itens e recarregue quando a AGU atualizar.', 'sucesso');
+      } catch (err) {
+        console.error('Erro ao exportar Markdown:', err);
+        mostrarToast('Não foi possível exportar o modelo em Markdown.', 'erro');
+      }
+    }
+
+    function restaurarSchemaPadrao() {
+      CHECKLIST_SCHEMA = SCHEMA_PADRAO;
+      schemaMeta = { origem: 'padrao', versaoModelo: 'Padrão AGU (Set/2024)', atualizadoEm: null };
+      try { localStorage.removeItem(SCHEMA_STORAGE_KEY); } catch (e) { /* ignore */ }
+      renderizarTudo();
+      mostrarToast('Modelo padrão da AGU restaurado.', 'info');
+    }
+
+    function atualizarIndicadorModelo() {
+      const totalListas = CHECKLIST_SCHEMA.length;
+      const totalItens = CHECKLIST_SCHEMA.reduce((a, s) => a + s.itens.length, 0);
+      const nome = schemaMeta.versaoModelo || (schemaMeta.origem === 'padrao' ? 'Padrão AGU' : 'Personalizado');
+      const sufixo = schemaMeta.atualizadoEm
+        ? ` • atualizado em ${new Date(schemaMeta.atualizadoEm).toLocaleDateString('pt-BR')}`
+        : '';
+      const texto = `${nome} — ${totalListas} listas / ${totalItens} itens${sufixo}`;
+      const classe = schemaMeta.origem === 'personalizado'
+        ? 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-semibold border bg-amber-50 text-amber-800 border-amber-200'
+        : 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-semibold border bg-ifma-blue-light text-ifma-blue border-ifma-blue/30';
+
+      // Atualiza o indicador na seção e no modal (ambos quando presentes)
+      ['modelo-indicador', 'modelo-indicador-modal'].forEach((elId) => {
+        const el = document.getElementById(elId);
+        if (el) { el.textContent = texto; el.className = classe; }
+      });
+    }
+
+    /**
+     * =========================================================================
      * 4. NOTIFICAÇÕES TOAST
      * =========================================================================
      */
@@ -862,8 +1494,31 @@
      * 5. LÓGICA DE RENDERIZAÇÃO DA INTERFACE
      * =========================================================================
      */
+    /**
+     * Avalia, de forma declarativa, se uma seção deve aparecer para o estado atual.
+     * Suporta regras serializáveis (JSON), permitindo modelos carregados por arquivo.
+     *   { sempre: true }                        -> sempre visível
+     *   { requerModalidade: true }              -> visível após escolher dispensa/inexigibilidade
+     *   { modalidade: 'dispensa' | 'inexigibilidade' } (ou array) -> restringe por modalidade
+     *   { tipoObjeto: ['aquisicao','servicos','ambos','nenhum'] }  -> restringe por natureza do objeto
+     */
+    function secaoAplicavel(regra, state) {
+      if (!regra || typeof regra !== 'object') return state.modalidade !== null;
+      if (regra.sempre === true) return true;
+      if (regra.requerModalidade === true && state.modalidade === null) return false;
+      if (regra.modalidade) {
+        const mods = Array.isArray(regra.modalidade) ? regra.modalidade : [regra.modalidade];
+        if (!mods.includes(state.modalidade)) return false;
+      }
+      if (regra.tipoObjeto) {
+        const tipos = Array.isArray(regra.tipoObjeto) ? regra.tipoObjeto : [regra.tipoObjeto];
+        if (!tipos.includes(state.tipoObjeto)) return false;
+      }
+      return true;
+    }
+
     function getSecoesAtivas() {
-      return CHECKLIST_SCHEMA.filter((secao) => secao.condicao(appState));
+      return CHECKLIST_SCHEMA.filter((secao) => secaoAplicavel(secao.regra, appState));
     }
 
     function sincronizarMetadadosUI() {
@@ -1193,6 +1848,7 @@
     }
 
     function renderizarTudo() {
+      atualizarIndicadorModelo();
       sincronizarMetadadosUI();
       renderizarSeletores();
       renderizarChecklist();
@@ -2050,7 +2706,14 @@
         if (e.target.id === 'preview-scroll-area') fecharPreview();
       });
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') fecharPreview();
+        if (e.key === 'Escape') {
+          fecharPreview();
+          const mm = document.getElementById('modal-modelo');
+          if (mm && !mm.classList.contains('hidden')) {
+            mm.classList.add('hidden');
+            mm.classList.remove('flex');
+          }
+        }
       });
 
       // Botão Importar JSON
@@ -2062,6 +2725,42 @@
       inputImport.addEventListener('change', (e) => {
         const arquivo = e.target.files?.[0];
         if (arquivo) importarJSON(arquivo);
+      });
+
+      // Modal "Atualizar a versão da AGU" — abrir / fechar
+      const modalModelo = document.getElementById('modal-modelo');
+      const abrirModalModelo = () => {
+        atualizarIndicadorModelo();
+        modalModelo.classList.remove('hidden');
+        modalModelo.classList.add('flex');
+      };
+      const fecharModalModelo = () => {
+        modalModelo.classList.add('hidden');
+        modalModelo.classList.remove('flex');
+      };
+      document.getElementById('btn-abrir-modelo').addEventListener('click', abrirModalModelo);
+      document.getElementById('btn-modelo-fechar').addEventListener('click', fecharModalModelo);
+      modalModelo.addEventListener('click', (e) => {
+        if (e.target === modalModelo) fecharModalModelo();
+      });
+
+      // Modelo dinâmico (schema editável): baixar (.md / .json), atualizar e restaurar padrão
+      document.getElementById('btn-baixar-md').addEventListener('click', exportarMarkdown);
+      document.getElementById('btn-baixar-modelo').addEventListener('click', exportarSchema);
+
+      const inputModelo = document.getElementById('input-modelo-json');
+      document.getElementById('btn-atualizar-modelo').addEventListener('click', () => {
+        inputModelo.value = ''; // Permite recarregar o mesmo arquivo
+        inputModelo.click();
+      });
+      inputModelo.addEventListener('change', (e) => {
+        const arquivo = e.target.files?.[0];
+        if (arquivo) { importarModelo(arquivo); fecharModalModelo(); }
+      });
+
+      document.getElementById('btn-restaurar-modelo').addEventListener('click', () => {
+        restaurarSchemaPadrao();
+        fecharModalModelo();
       });
 
       // Modal de Confirmação para Limpar Dados
@@ -2094,6 +2793,7 @@
 
     // Boot da aplicação
     document.addEventListener('DOMContentLoaded', () => {
+      carregarSchemaLocal();
       carregarLocalStorage();
       inicializarEventos();
       renderizarTudo();
