@@ -131,99 +131,19 @@
           </div>
         </div>
 
-        <!-- Botões de Ação -->
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Botão Upload da Lista de Verificação (abre modal da versão da AGU) -->
+        <!-- Botão único: Opções (abre modal com todas as ações) -->
+        <div class="flex items-center">
           <button
-            id="btn-abrir-modelo"
+            id="btn-abrir-opcoes"
             type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white shadow-xs transition cursor-pointer"
-            title="Enviar/atualizar a lista de verificação conforme a versão da AGU"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-ifma-green hover:bg-ifma-green-dark text-white shadow-xs transition cursor-pointer"
+            title="Abrir as opções: documento, dados, modelo da AGU e limpar"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-            </svg>
-            <span>Upload lista de verificação</span>
-          </button>
-
-          <!-- Botão Importar JSON -->
-          <button
-            id="btn-importar"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300 transition cursor-pointer"
-            title="Importar dados salvos de um arquivo JSON"
-          >
-            <svg class="w-4 h-4 text-ifma-green" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-            </svg>
-            <span>Importar JSON</span>
-          </button>
-          <input id="input-importar-json" type="file" accept=".json,application/json" class="hidden" />
-
-          <!-- Botão Exportar JSON -->
-          <button
-            id="btn-exportar"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-green hover:bg-ifma-green-dark text-white shadow-xs transition cursor-pointer"
-            title="Baixar o preenchimento atual em formato JSON"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-            </svg>
-            <span>Exportar JSON</span>
-          </button>
-
-          <!-- Botão Preview do Documento -->
-          <button
-            id="btn-preview"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white shadow-xs transition cursor-pointer"
-            title="Visualizar prévia oficial do documento"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span>Preview</span>
-          </button>
-
-          <!-- Botão Exportar PDF -->
-          <button
-            id="btn-exportar-pdf"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-red-light text-ifma-red border border-ifma-red/30 transition cursor-pointer"
-            title="Baixar documento em formato PDF"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-            </svg>
-            <span>PDF</span>
-          </button>
-
-          <!-- Botão Exportar DOCX -->
-          <button
-            id="btn-exportar-docx"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer"
-            title="Baixar documento editável em formato Word (.docx)"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-            </svg>
-            <span>DOCX</span>
-          </button>
-
-          <!-- Botão Limpar -->
-          <button
-            id="btn-limpar"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-ifma-red hover:bg-ifma-red-dark text-white transition cursor-pointer"
-            title="Limpar todo o formulário"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-            </svg>
-            <span class="hidden sm:inline">Limpar</span>
+            <span>Opções</span>
           </button>
         </div>
       </div>
@@ -595,6 +515,103 @@
         class="bg-white text-neutral-900 w-full max-w-[210mm] min-h-[297mm] h-fit shadow-2xl rounded-sm p-6 sm:p-10 md:p-12 border border-neutral-300"
       >
         <!-- Conteúdo gerado dinamicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL: OPÇÕES (TODAS AS AÇÕES EM UM SÓ LUGAR)
+  ====================================================================== -->
+  <div id="modal-opcoes" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/50 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-neutral-200">
+      <!-- Cabeçalho -->
+      <div class="flex items-center justify-between gap-3 p-5 sm:p-6 border-b border-neutral-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-ifma-green-light text-ifma-green-darker flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-neutral-900">Opções</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">Documento, dados e modelo da lista de verificação.</p>
+          </div>
+        </div>
+        <button id="btn-opcoes-fechar" type="button" class="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition cursor-pointer" aria-label="Fechar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-5">
+        <!-- Grupo: Documento -->
+        <div>
+          <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Documento</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button id="btn-preview" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-ifma-blue hover:bg-ifma-blue-dark text-white shadow-xs transition cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Visualizar</span>
+            </button>
+            <button id="btn-exportar-pdf" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white hover:bg-ifma-red-light text-ifma-red border border-ifma-red/30 transition cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+              <span>Baixar PDF</span>
+            </button>
+            <button id="btn-exportar-docx" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+              <span>Baixar DOCX</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Grupo: Dados do preenchimento -->
+        <div>
+          <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Dados do preenchimento</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <button id="btn-exportar" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-ifma-green hover:bg-ifma-green-dark text-white shadow-xs transition cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              <span>Exportar JSON</span>
+            </button>
+            <button id="btn-importar" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-300 transition cursor-pointer">
+              <svg class="w-4 h-4 text-ifma-green" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              <span>Importar JSON</span>
+            </button>
+          </div>
+          <input id="input-importar-json" type="file" accept=".json,application/json" class="hidden" />
+        </div>
+
+        <!-- Grupo: Modelo da AGU -->
+        <div>
+          <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Modelo da lista (AGU)</h4>
+          <button id="btn-abrir-modelo" type="button" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white hover:bg-ifma-blue-light text-ifma-blue border border-ifma-blue/30 transition cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            <span>Upload lista de verificação (atualizar versão da AGU)</span>
+          </button>
+        </div>
+
+        <!-- Limpar -->
+        <div class="pt-1 border-t border-neutral-100">
+          <button id="btn-limpar" type="button" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white hover:bg-ifma-red-light text-ifma-red border border-ifma-red/30 transition cursor-pointer mt-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            <span>Limpar formulário</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2717,11 +2734,13 @@
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           fecharPreview();
-          const mm = document.getElementById('modal-modelo');
-          if (mm && !mm.classList.contains('hidden')) {
-            mm.classList.add('hidden');
-            mm.classList.remove('flex');
-          }
+          ['modal-modelo', 'modal-opcoes'].forEach((id) => {
+            const m = document.getElementById(id);
+            if (m && !m.classList.contains('hidden')) {
+              m.classList.add('hidden');
+              m.classList.remove('flex');
+            }
+          });
         }
       });
 
@@ -2734,6 +2753,25 @@
       inputImport.addEventListener('change', (e) => {
         const arquivo = e.target.files?.[0];
         if (arquivo) importarJSON(arquivo);
+      });
+
+      // Modal "Opções" — abrir / fechar. Fecha ao clicar em qualquer ação
+      // (a ação roda pelo próprio listener do botão, mantendo os IDs originais).
+      const modalOpcoes = document.getElementById('modal-opcoes');
+      const abrirModalOpcoes = () => {
+        modalOpcoes.classList.remove('hidden');
+        modalOpcoes.classList.add('flex');
+      };
+      const fecharModalOpcoes = () => {
+        modalOpcoes.classList.add('hidden');
+        modalOpcoes.classList.remove('flex');
+      };
+      document.getElementById('btn-abrir-opcoes').addEventListener('click', abrirModalOpcoes);
+      document.getElementById('btn-opcoes-fechar').addEventListener('click', fecharModalOpcoes);
+      modalOpcoes.addEventListener('click', (e) => {
+        if (e.target === modalOpcoes) { fecharModalOpcoes(); return; }
+        const btn = e.target.closest('button');
+        if (btn && btn.id && btn.id !== 'btn-opcoes-fechar') fecharModalOpcoes();
       });
 
       // Modal "Atualizar a versão da AGU" — abrir / fechar
