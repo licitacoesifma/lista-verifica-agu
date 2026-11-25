@@ -2198,15 +2198,23 @@
       try {
         mostrarToast('Gerando arquivo PDF, aguarde...', 'info');
 
-        // Cria um container temporário fora da tela para renderizar o PDF com fidelidade
+        // IMPORTANTE: o html2canvas gera um canvas de ALTURA 0 (PDF em branco)
+        // quando o elemento capturado está em position fixed/absolute. Por isso o
+        // conteúdo precisa ser renderizado em FLUXO NORMAL. Para não afetar o layout
+        // nem piscar na tela, colocamos o conteúdo (estático) dentro de um container
+        // invisível com height:0 e overflow:hidden.
+        const host = document.createElement('div');
+        host.style.height = '0';
+        host.style.overflow = 'hidden';
+        host.setAttribute('aria-hidden', 'true');
+
         const wrapper = document.createElement('div');
-        wrapper.style.position = 'fixed';
-        wrapper.style.left = '-9999px';
-        wrapper.style.top = '0';
         wrapper.style.width = '190mm';
         wrapper.style.background = '#ffffff';
         wrapper.innerHTML = gerarHtmlDocumentoOficial();
-        document.body.appendChild(wrapper);
+
+        host.appendChild(wrapper);
+        document.body.appendChild(host);
 
         const nomeArquivo = `${obterNomeBaseArquivo()}.pdf`;
         const opcoes = {
@@ -2214,13 +2222,14 @@
           filename: nomeArquivo,
           enableLinks: true,
           image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#ffffff' },
           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
           pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
+        // Captura o 'wrapper' (em fluxo dentro do host), nunca o host com height:0
         await window.html2pdf().set(opcoes).from(wrapper).save();
-        document.body.removeChild(wrapper);
+        document.body.removeChild(host);
         mostrarToast(`PDF "${nomeArquivo}" baixado com sucesso!`, 'sucesso');
       } catch (err) {
         console.error('Erro ao gerar PDF:', err);
